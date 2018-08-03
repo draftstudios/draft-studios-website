@@ -1,0 +1,122 @@
+.App {
+  display: flex;
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+html, body, #app, #app>div {
+  height: 100%;
+}
+
+.canvas {
+  height: 100vh;
+  width: 100vw;
+  background-color: blue;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  position: absolute;
+}
+
+.floor {
+  width: 100vw;
+  background-color: green;
+  position: absolute;
+  overflow: "hidden";
+}
+
+.person {
+  height: 200px;
+  width: 80px;
+  background-color: black;
+  display: 'flex'; 
+  justify-content: 'center';
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+div.makemejump {
+ -webkit-animation: jump 2s ease 0s infinite normal ;
+ animation: jump 2s ease 0s infinite normal ;
+}
+
+@-webkit-keyframes jump {
+  0%{
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+  }
+  20%{
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+  }
+  40%{
+	-webkit-transform: translateY(-30px);
+	transform: translateY(-30px);
+  }
+  40%{
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+  }
+  50%{
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+  }
+  60%{
+	-webkit-transform: translateY(-15px);
+	transform: translateY(-15px);
+  }
+  100%{
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+  }
+}
+
+@keyframes jump {
+  0%{
+	transform: translateY(0);
+  }
+  20%{
+	transform: translateY(0);
+  }
+  40%{
+	transform: translateY(-30px);
+  }
+  40%{
+	transform: translateY(0);
+  }
+  50%{
+	transform: translateY(0);
+  }
+  60%{
+	transform: translateY(-15px);
+  }
+  100%{
+	transform: translateY(0);
+  }
+}
