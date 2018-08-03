@@ -13,7 +13,7 @@ class Person extends Component {
 
   timer = () => setTimeout(() => { 
     this.resetPerson();
-  }, 2000);
+  }, 1500);
 
   componentWillReceiveProps(nextProps){
     if (nextProps.deltay !== this.props.deltay) {

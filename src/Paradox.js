@@ -58,15 +58,27 @@ class Paradox extends Component {
   render() {
     const startingpositionx = this.state.startingPositionX - (this.props.move * this.props.paradoxratio); 
     const startingpositiony = this.state.startingPositionY;
+    const floor = this.props.floor;
+    const color = this.props.color;
+    const asset = this.props.asset;
 
     return (
-        <div className="paradox" style={{ left: startingpositionx+'px', top: startingpositiony+'px', position:"absolute", backgroundColor:"white" }}>
+        <div className="paradox" style={{ left: startingpositionx+'px', 
+                top: startingpositiony+'px', 
+                bottom: floor,
+                position: "absolute", 
+                backgroundColor: color }}>
         This is just a test...<br/>
         Imagine me to be a single cloud...<br/>
         A big fluffy, puffy cloud...<br/>
+        { asset ? <img src={"assets/"+asset}/> : null }
         </div>
     );
   }
 }
+
+Paradox.defaultProps = {
+    color: "white",
+};
 
 export default Paradox;
