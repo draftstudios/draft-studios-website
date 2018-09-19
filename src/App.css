@@ -31,14 +31,44 @@
 
 /* popup mechanic (TD garden jumps up from 500 pixels under the "ground") */
 .popup {
-  transform: translateY(+500px);
-  transition: transform 400ms ease-in;
+  transform: translateY(+1500px);
+  transition: transform 2000ms ease-in;
 }
 .popup.slideIn {
   transform: translateY(0);
+  animation: bounce 700ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards; /* or: backwards, both, none */
+  webkit-animation: bounce 800ms;
 }
 .popup.slideOut {
   transform: translateY(+500px);
+}
+
+@-webkit-keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(15px);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(15px);
+  }
+} 
+
+.dropmefromsky {
+  transform: translateY(-5000px);
+  transition: transform 2000ms ease-in;
+}
+.dropmefromsky.slideIn {
+  transform: translateY(0);
 }
 
 /* css setup to get the viewport right... canvas is a misnomer here */
@@ -67,6 +97,14 @@ html, body, #app, #app>div {
 
 .day-to-night {
   animation: day-to-night 5s ease 0s forwards;
+}
+
+.dusk-to-dawn{
+  animation: dusk-to-dawn 5s ease 0s forwards;
+}
+
+.dawn-to-dusk{
+  animation: dawn-to-dusk 5s ease 0s forwards;
 }
 
 @keyframes night-to-day {
@@ -111,6 +149,20 @@ html, body, #app, #app>div {
     }
 }
 
+@keyframes dusk-to-dawn {
+    from { background-color: navy; 
+    }
+    to { background-color: pink; 
+    }
+}
+
+@keyframes dawn-to-dusk {
+    from { background-color: pink; 
+    }
+    to { background-color: navy; 
+    }
+}
+
 .floor {
   background-color: green;
   position: absolute;
@@ -140,6 +192,18 @@ html, body, #app, #app>div {
   overflow: hidden;
 }
 
+.person-jimmy {
+  height: 200px;
+  width: 200px;
+  /*background-color: black;*/
+  justify-content: 'center';
+  position: absolute;
+  left: 0;
+  right:50%; 
+  margin-right:200px; 
+  overflow: hidden;
+}
+
 .person-flash-animation {
 
 }
@@ -155,6 +219,10 @@ html, body, #app, #app>div {
   width: 1400px;
   height: 400px;
   background: url('/assets/Vegas-Minh-Slides.png'); 
+}
+
+.person-slides-jimmy {
+  background: url('/assets/Vegas-Jimmy-Slides.png'); 
 }
 
 /* just for fun... if I run really fast, my avatar will do a mini-jump for no reason */
@@ -546,13 +614,39 @@ div.makemejump {
    100% { background-position: -1365px; }
 }
 
+.vegas-teleporter {
+  width: 309px;
+  height: 693px;
+  background: url('/assets/Vegas-Teleporter-Slides.png') left center;
+}
+
 .vegas-teleporter-slides {
   width: 309px;
   height: 693px;
   background: url('/assets/Vegas-Teleporter-Slides.png') left center;
-  animation: play-vegas-teleporter 5s steps(7) infinite;
+  animation: play-vegas-teleporter 3s steps(7, end) forwards;
 }
 
 @keyframes play-vegas-teleporter {
    100% { background-position: -2163px; }
+}
+
+.notification {
+  color: white;
+  width: 75vw;
+  height: 5vh;
+  text-align: center;
+  animation: blinker 4s ease infinite;
+  font-size: 1.4em;
+  position: fixed;
+  left: 50%;
+  bottom: 5vh;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Paralax extends Component {
+class Parallax extends Component {
 
     constructor(props) {
       super(props);
@@ -20,58 +20,36 @@ class Paralax extends Component {
   }
 
   onScroll = (e) => {
-      console.log("window scroll y:", window.scrollY);
     const startingpositionx = this.state.startingPositionX - (window.scrollY * this.props.paradoxratio); 
     this.setState({startingPositionX: startingpositionx});
   }
 
-        /*
-    componentDidUpdate(prevProps) {
-      if (this.props.move !== prevProps.move) {
-          //this.setState({startingPositionX: 100});
-      }
-    }
-
-    static getDerivedStateFromProps(nextProps, prevState) {
-        //state depends on changes in props over time
-
-        const prevStartingPositionX = prevState.startingPositionX;
-
-        return {
-            startingPositionX: prevStartingPositionX,
-        }
-    }
-
-    onParadoxWheelScroll = (e) => {
-      //do other stuff
-        //possible to put logic here...
-      const speed = this.props.paradoxratio;
-      const currentStartingPositionY = this.state.startingPositionY;
-
-        console.log("speed", speed, currentStartingPositionY);
-      this.setState({startingPositionY: currentStartingPositionY + (e.deltaY * speed)});
-        
-      this.props.scroll(); // still allow whatever from props
-    }
-    */
-
   render() {
-      if (this.props.popup === "1") console.log(this.props.move, this.props.x);
-    const startingpositionx = this.state.startingPositionX - (this.props.move * this.props.paradoxratio); 
-    const startingpositiony = this.state.startingPositionY;
-    const move = this.props.move;
-    const x = this.props.x;
-    const popup = this.props.popup;
-    const floor = this.props.floor;
-    const color = this.props.color;
-    const asset = this.props.asset;
-    const maxheight = this.props.maxheight;
-    const animationclass = ' ' + this.props.animationclass;
-    const imgclass = ' ' + this.props.imgclass;
-    const opacity = this.props.opacity;
-    const clss = (popup, move, x) => (
-        popup==="1" && move + 100 > x + 0 ? ' slideIn' : ' slideOut'
-    );
+      if (this.props.popup === "1") console.log(this.props.move, this.props.x, this.props.vw);
+        const startingpositionx = this.state.startingPositionX - (this.props.move * this.props.paradoxratio); 
+        const startingpositiony = this.state.startingPositionY;
+        const move = this.props.move;
+        const x = this.props.x;
+        const popup = this.props.popup;
+        const floor = this.props.floor;
+        const color = this.props.color;
+        const asset = this.props.asset;
+        const maxheight = this.props.maxheight;
+        const animationclass = 
+          move === this.props.animateat ? 
+              ' ' + this.props.animationclass : 
+              !this.props.animateat 
+              ? 
+              ' ' + this.props.animationclass : 
+              ' ' + this.props.staticclass;
+        const imgclass = ' ' + this.props.imgclass;
+        const opacity = this.props.opacity;
+        const clss = (popup, move, x) => (
+            popup==="1" && 
+            move + (this.props.vw / 2) // current position relative to travel line
+            > x - (this.props.vw / 8) 
+            ? ' slideIn' : ' slideOut'
+        );
 
 
     {/*
@@ -83,18 +61,20 @@ class Paralax extends Component {
             */}
 
     return (
-        <div className={popup ? "paradox popup " + clss(popup, move, x) + animationclass : "paradox " + clss(popup, move, x) + animationclass} style={{ left: startingpositionx+'px', 
-                top: startingpositiony+'px', 
-                bottom: floor,
-                position: "absolute", 
-                display: "flex",
-                backgroundColor: color,
-                opacity: opacity,
-            }}>
+        <div className={popup ? "parallax popup " + clss(popup, move, x) + animationclass : "parallax" + clss(popup, move, x) + animationclass} 
+                style={{ left: startingpositionx+'px', 
+                    top: startingpositiony+'px', 
+                    bottom: floor,
+                    position: "absolute", 
+                    display: "flex",
+                    backgroundColor: color,
+                    opacity: opacity,
+                }}>
             {/*
             // max-height for image object since it scales!!!
+                // asset check is failing for animated classes since it's technically a background with no image... make transparent image asset
             */}
-        { asset ? <img src={"assets/"+asset} className={imgclass} style={{ maxHeight: maxheight }} /> : 
+        { asset ? <img src={"assets/"+asset} alt={asset} className={imgclass} style={{ maxHeight: maxheight }} /> : 
                 <span>
                 This is just a test...<br/>
                 Imagine me to be a single cloud...<br/>
@@ -106,10 +86,12 @@ class Paralax extends Component {
   }
 }
 
-Paralax.defaultProps = {
+Parallax.defaultProps = {
     color: "white",
     opacity: 1,
     popup: 0,
+    animateat: null,
+    staticclass: null,
 };
 
-export default Paralax;
+export default Parallax;

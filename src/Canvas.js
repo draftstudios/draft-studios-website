@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Canvas extends Component {
 
   render() {
-    const shouldChangeBackground = 0 > 1 ? "canvas night-to-day" : "canvas day-to-night";
+    const shouldChangeBackground = this.props.mode==="vegas" ? "canvas day-to-night" : "canvas night-to-day";
     const maxscroll = this.props.maxscroll; 
     return (
         <div className={shouldChangeBackground} onWheel={this.props.scroll}>
