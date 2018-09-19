@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Parallax from './Parallax';
 import Notification from './Notification';
 
-// going to show you two ways to potentially grab/get data! WebSockets and a normal Fetch(). Many alternatives exist.
+// I isolated CF interactions to this one component. 
+// Here I'm going going to show you two ways to potentially grab/get data! WebSockets and a normal Fetch(). 
 //
 class FetchColdFusionAssets extends Component {
 
@@ -83,7 +84,7 @@ class FetchColdFusionAssets extends Component {
       this.gotUpdateFromCFC(rawdata);
     })
 
-    fetchFromWS = (params) => fetch("http://127.0.0.1:54520/broadcast.cfm?params="+params).then(function(response) { 
+    fetchFromWS = (params) => fetch("http://127.0.0.1:54520/services/broadcast.cfm?params="+params).then(function(response) { 
       return response.json();
     }).then((rawdata) => {
         // don't really have to do anything... the websocket should update content
