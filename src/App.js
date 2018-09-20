@@ -54,10 +54,11 @@ class App extends Component {
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeys);
+      //window.addEventListener('scroll', this.handleWheel, true);
     window.addEventListener('resize', this.resize);
 
     const viewportWidth = this.myCanvas.current.offsetWidth;
-      console.log("vw:", viewportWidth);
+      //console.log("vw:", viewportWidth);
 
       this.setState({
         vw: viewportWidth
@@ -66,6 +67,7 @@ class App extends Component {
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeys);
+      //window.removeEventListener('scroll', this.handleWheel);
     window.removeEventListener('resize', this.resize);
   }
 
@@ -143,9 +145,11 @@ class App extends Component {
         {/* this is how i'll handle max scroll */}
 
             {/* vegas!!! */}
+            {/*
+            <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="0.7" opacity="0.3" asset="Vegas-Sand-Dunes.png" color="transparent"/>
+            */}
             <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="0.9" opacity="0.5" asset="Vegas-Background-Buildings.png" color="transparent"/>
             <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="1.2" opacity="1" asset="Vegas-Back-Trees.png" color="transparent"/>
-
 
                 {/* set this width to the vegas scene width */}
             <Fireworks move={pos} x="0" y="0" width="1500" paradoxratio="1"/>
@@ -158,7 +162,6 @@ class App extends Component {
             <Parallax move={pos} x="5300" animationclass="vegas-bellagio-slides" floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" asset="Spacer.png"/>
 
             <Parallax move={pos} x="7300" animationclass="vegas-stratosphere-slides" floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" asset="Spacer.png"/>
-            
 
             <Parallax move={pos} x="50" y="25" paradoxratio="0.5" opacity="0.3" asset="Cloud-Left-Large.png" color="transparent"/>
             <Parallax move={pos} x="440" y="200" paradoxratio="2" opacity="0.4" asset="Cloud-Left-Small.png" color="transparent"/>
@@ -168,15 +171,14 @@ class App extends Component {
             <Parallax move={pos} x="2750" y="10" paradoxratio="0.25" opacity="0.6" asset="Clouds-Left-Med.png" color="transparent"/>
             <Parallax move={pos} x="3750" y="80" paradoxratio="1.25" opacity="0.2" asset="Cloud-Left-Large.png" color="transparent"/>
 
-            <FetchColdFusionAssets move={pos} floor={this.state.street}/>
             <Parallax move={pos} x="100" floor={this.state.floor} color="transparent" paradoxratio="0.75" asset="Bird-1.png" imgclass="bird"/>
             <Parallax move={pos} x="300" floor={this.state.floor} color="transparent" paradoxratio="1.5" asset="Bird-2.png" imgclass="bird"/>
             <Parallax move={pos} x="800" floor={this.state.floor} color="transparent" paradoxratio="0.75" asset="Bird-1.png" imgclass="bird"/>
             <Parallax move={pos} x="1000" floor={this.state.floor} color="transparent" paradoxratio="1.5" asset="Bird-2.png" imgclass="bird"/>
- 
 
             <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="1.1" opacity="1" asset="Vegas-Front-Trees.png" color="transparent"/>
 
+            <FetchColdFusionAssets move={pos} floor={this.state.street}/>
 
             {/* <Paralax scroll={this.handleWheel} move={scrollChange} x="750" y="100" paradoxratio="1.25"/> */} 
             {/* below "floor" should really be set to total width of ground covered by all assets in the Parallax category */}
@@ -246,7 +248,6 @@ class App extends Component {
             <Parallax move={pos} x="7500" staticclass="vegas-teleporter" animationclass="vegas-teleporter-slides" animateat={bostonMaxScroll} floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" freeze="true" asset="Spacer.png"/>
 
             <Notification text="Hey, you made it to the secret stage! Can you guess where we're from?"/>
-
 
         </Canvas>
         )

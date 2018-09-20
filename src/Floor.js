@@ -8,22 +8,7 @@ class Floor extends Component {
           startingPositionX: this.props.x,
           startingPositionY: this.props.y,
       };
-      this.currentPosition = this.props.x;
     }
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.onScroll, false);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll, false);
-  }
-
-  onScroll = (e) => {
-      console.log("window scroll y:", window.scrollY);
-    const startingpositionx = this.state.startingPositionX - (window.scrollY * this.props.paradoxratio); 
-    this.setState({startingPositionX: startingpositionx});
-  }
 
   render() {
     const startingpositionx = this.state.startingPositionX - (this.props.move * this.props.paradoxratio); 
@@ -41,7 +26,7 @@ class Floor extends Component {
                 top: startingpositiony+'px', 
                 position: "absolute" 
             }} 
-            onWheel={this.props.scroll}>
+            >
             { !nowrap ? 
             <div className="wrap" style={{bottom: 0, width: width+'px'}} >
             </div>

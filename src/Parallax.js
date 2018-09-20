@@ -11,21 +11,8 @@ class Parallax extends Component {
       this.currentPosition = this.props.x;
     }
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.onScroll, false);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll, false);
-  }
-
-  onScroll = (e) => {
-    const startingpositionx = this.state.startingPositionX - (window.scrollY * this.props.paradoxratio); 
-    this.setState({startingPositionX: startingpositionx});
-  }
-
   render() {
-      if (this.props.popup === "1") console.log(this.props.move, this.props.x, this.props.vw);
+      //if (this.props.popup === "1") console.log(this.props.move, this.props.x, this.props.vw);
         const startingpositionx = this.state.startingPositionX - (this.props.move * this.props.paradoxratio); 
         const startingpositiony = this.state.startingPositionY;
         const move = this.props.move;
@@ -51,15 +38,6 @@ class Parallax extends Component {
             ? ' slideIn' : ' slideOut'
         );
 
-
-    {/*
-
-    const Navbar = ({ visible }) => (
-      <div id="navbar" className={visible ? 'slideIn' : 'slideOut'}>
-      </div>
-    ) 
-            */}
-
     return (
         <div className={popup ? "parallax popup " + clss(popup, move, x) + animationclass : "parallax" + clss(popup, move, x) + animationclass} 
                 style={{ left: startingpositionx+'px', 
@@ -71,7 +49,7 @@ class Parallax extends Component {
                     opacity: opacity,
                 }}>
             {/*
-            // max-height for image object since it scales!!!
+                // max-height for image object since it scales!!!
                 // asset check is failing for animated classes since it's technically a background with no image... make transparent image asset
             */}
         { asset ? <img src={"assets/"+asset} alt={asset} className={imgclass} style={{ maxHeight: maxheight }} /> : 

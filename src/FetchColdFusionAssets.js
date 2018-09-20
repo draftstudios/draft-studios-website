@@ -16,7 +16,7 @@ class FetchColdFusionAssets extends Component {
   }
 
   gotUpdateFromSocket = (data) => {
-      console.log(data);
+      //console.log(data);
       if (data) {
           this.setState({ json: JSON.parse(data) });
       }
@@ -35,10 +35,10 @@ class FetchColdFusionAssets extends Component {
   componentDidMount() {
     // ****** first way! web sockets yay!
     let socket = new WebSocket("ws://127.0.0.1:8581");
-      console.log(socket);
+      //console.log(socket);
 
       socket.onopen = () => {
-      console.log( 'opened' );
+          //console.log( 'opened' );
 
       socket.send(
         JSON.stringify( {
@@ -64,11 +64,11 @@ class FetchColdFusionAssets extends Component {
     };
 
     socket.onclose = () => {
-      console.log( 'onclose' );
+        //console.log( 'onclose' );
     };
 
     socket.onerror = () => {
-      console.log( 'onerror' );
+        //console.log( 'onerror' );
     };
 
     socket.onmessage = ( event ) => {
@@ -96,13 +96,13 @@ class FetchColdFusionAssets extends Component {
 
     return (
         <div>
-
             {json.map(obj => 
                 <Parallax key={obj.x} move={this.props.move} x={obj.x} floor={this.props.floor} color={obj.color} paradoxratio={obj.paradoxratio} asset={obj.asset} imgclass={obj.imgclass}/>
             )}
-
-            <button onClick={this.fetchFromCFC}>Change Everyone's Duck-Boats (CFC)</button>
-            <button onClick={this.fetchFromWS}>Change Everyone's Duck-Boats (WS)</button>
+            <div style={{position: "absolute"}}>
+                <button onClick={this.fetchFromCFC}>Change Everyone's Duck-Boats (CFC)</button>
+                <button onClick={this.fetchFromWS}>Change Everyone's Duck-Boats (WS)</button>
+            </div>
         </div>
     );
   }

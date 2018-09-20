@@ -62,7 +62,7 @@ class Person extends Component {
   componentDidMount() {
       if (this.state.slidein !== "slideIn") {
         this.setState({slidein: "slideIn"});
-        console.log("setting state", this.state.slidein);
+          //console.log("setting state", this.state.slidein);
         this.forceUpdate();
       }
   }

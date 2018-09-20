@@ -616,13 +616,13 @@ div.makemejump {
 
 .vegas-teleporter {
   width: 309px;
-  height: 693px;
+  height: 1007px;
   background: url('/assets/Vegas-Teleporter-Slides.png') left center;
 }
 
 .vegas-teleporter-slides {
   width: 309px;
-  height: 693px;
+  height: 1007px;
   background: url('/assets/Vegas-Teleporter-Slides.png') left center;
   animation: play-vegas-teleporter 3s steps(7, end) forwards;
 }
