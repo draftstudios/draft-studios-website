@@ -28,10 +28,6 @@ class FetchColdFusionAssets extends Component {
       }
   }
 
-  changeBackground = () => {
-      this.setState({ color: 'pink' });
-  }
-
   componentDidMount() {
     // ****** first way! web sockets yay!
     let socket = new WebSocket("ws://127.0.0.1:8581");
@@ -78,13 +74,13 @@ class FetchColdFusionAssets extends Component {
   }
 
     // ****** second way! straight cfcs! be mindful of CORS 
-    fetchFromCFC = (params) => fetch("http://127.0.0.1:54520/services/ds.cfc?method=fetch&params="+params).then(function(response) { 
+    fetchFromCFC = (params) => fetch("http://127.0.0.1:8080/services/ds.cfc?method=fetch&params="+params).then(function(response) { 
       return response.json();
     }).then((rawdata) => {
       this.gotUpdateFromCFC(rawdata);
     })
 
-    fetchFromWS = (params) => fetch("http://127.0.0.1:54520/services/broadcast.cfm?params="+params).then(function(response) { 
+    fetchFromWS = (params) => fetch("http://127.0.0.1:8080/services/broadcast.cfm?params="+params).then(function(response) { 
       return response.json();
     }).then((rawdata) => {
         // don't really have to do anything... the websocket should update content

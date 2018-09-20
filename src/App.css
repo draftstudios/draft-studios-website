@@ -29,39 +29,17 @@
   to { transform: rotate(360deg); }
 }
 
-/* popup mechanic (TD garden jumps up from 500 pixels under the "ground") */
+/* popup mechanic (TD garden jumps up from under the "ground") */
 .popup {
   transform: translateY(+1500px);
-  transition: transform 2000ms ease-in;
+  transition: transform 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
 }
 .popup.slideIn {
   transform: translateY(0);
-  animation: bounce 700ms;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards; /* or: backwards, both, none */
-  webkit-animation: bounce 800ms;
 }
 .popup.slideOut {
   transform: translateY(+500px);
 }
-
-@-webkit-keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  30% {
-    transform: translateY(15px);
-  }
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  30% {
-    transform: translateY(15px);
-  }
-} 
 
 .dropmefromsky {
   transform: translateY(-5000px);
