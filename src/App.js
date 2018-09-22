@@ -33,7 +33,7 @@ import Floor from './Floor';
 import Parallax from './Parallax';
 import Fireworks from './Fireworks';
 import Notification from './Notification';
-import FetchColdFusionAssets from './FetchColdFusionAssets';
+// import FetchColdFusionAssets from './FetchColdFusionAssets';
 
 // test
 import EventComponent from './EventComponent'; 
@@ -100,16 +100,21 @@ class App extends Component {
     });
   }
 
-  handleWheel = (e, maxscroll) => {
+  handleWheel = (e, maxscroll, frozen) => {
       const currentposition = this.state.currentPosition;
       //console.log(e.deltaMode, e.deltaX, e.deltaY, e.deltaZ)
 
-      this.setState({
-          deltaMode: e.deltaMode,
-          deltaY: e.deltaY,
-          currentPosition: currentposition+e.deltaY > 0 ? (currentposition+e.deltaY > maxscroll ? maxscroll : currentposition + e.deltaY) : 0, 
-          freeze: currentposition+e.deltaY > maxscroll ? 1 : 0,
-      });
+      if (!frozen) {
+          this.setState({
+              deltaMode: e.deltaMode,
+              deltaY: e.deltaY,
+              currentPosition: currentposition+e.deltaY > 0 ? (currentposition+e.deltaY > maxscroll ? maxscroll : currentposition + e.deltaY) : 0, 
+              freeze: currentposition+e.deltaY > maxscroll ? 1 : 0,
+          });
+      }
+
+      e.preventDefault();
+      e.stopPropagation();
   }
 
   handleKeys = (e) => {
@@ -145,7 +150,7 @@ class App extends Component {
         {
          
         (mode === "vegas" && 
-        <Canvas mode={mode} tabIndex="1" key="1" scroll={(e) => freeze ? null : this.handleWheel(e, vegasMaxScroll) }>
+        <Canvas mode={mode} tabIndex="1" key="1" scroll={(e) => freeze ? this.handleWheel(e, vegasMaxScroll, true) : this.handleWheel(e, vegasMaxScroll) }>
         {/* this is how i'll handle max scroll */}
 
             {/* vegas!!! */}
@@ -184,7 +189,9 @@ class App extends Component {
 
             <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="1.1" opacity="1" asset="Vegas-Front-Trees.png" color="transparent"/>
 
+            {/* 
             <FetchColdFusionAssets move={pos} floor={this.state.street}/>
+            */}
 
             {/* <Paralax scroll={this.handleWheel} move={scrollChange} x="750" y="100" paradoxratio="1.25"/> */} 
             {/* below "floor" should really be set to total width of ground covered by all assets in the Parallax category */}
@@ -206,7 +213,7 @@ class App extends Component {
         </Canvas>
         ) ||
         (mode === "boston" && 
-        <Canvas mode={mode} tabIndex="2" key="2" scroll={(e) => freeze ? null : this.handleWheel(e, bostonMaxScroll) }>
+        <Canvas mode={mode} tabIndex="2" key="2" scroll={(e) => freeze ? this.handleWheel(e, bostonMaxScroll, true) : this.handleWheel(e, bostonMaxScroll) }>
 
             {/*
             <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="0.75" opacity="0.5" asset="Background-Buildings.png" color="transparent"/>
