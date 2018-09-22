@@ -14,9 +14,6 @@ class Canvas extends Component {
   handleTouchStart = (e) => {
     console.log('start', e.changedTouches[0].pageX, e.target); 
       this.setState({ startX: e.changedTouches[0].pageX }); 
-
-      e.preventDefault();
-      e.stopPropogation();
   }
 
   handleTouchMove = (e) => {
@@ -31,9 +28,6 @@ class Canvas extends Component {
       this.props.scroll(obj);
 
       this.setState({ startX: e.changedTouches[0].pageX }); 
-      
-      e.preventDefault();
-      e.stopPropogation();
   }
 
   handleTouchEnd = () => {

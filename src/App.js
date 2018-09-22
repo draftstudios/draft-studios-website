@@ -35,6 +35,9 @@ import Fireworks from './Fireworks';
 import Notification from './Notification';
 import FetchColdFusionAssets from './FetchColdFusionAssets';
 
+// test
+import EventComponent from './EventComponent'; 
+
 class App extends Component {
 
   constructor(props) {
@@ -138,6 +141,7 @@ class App extends Component {
         //https://stackoverflow.com/questions/43817118/how-to-get-the-width-of-a-react-element
         <div ref={this.myCanvas}>
 
+        <EventComponent>
         {
          
         (mode === "vegas" && 
@@ -148,8 +152,8 @@ class App extends Component {
             {/*
             <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="0.7" opacity="0.3" asset="Vegas-Sand-Dunes.png" color="transparent"/>
             */}
-            <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="0.9" opacity="0.5" asset="Vegas-Background-Buildings.png" color="transparent"/>
-            <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="1.2" opacity="1" asset="Vegas-Back-Trees.png" color="transparent"/>
+            <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="0.8" opacity="0.5" asset="Vegas-Background-Buildings.png" color="transparent"/>
+            <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="1.3" opacity="1" asset="Vegas-Back-Trees.png" color="transparent"/>
 
                 {/* set this width to the vegas scene width */}
             <Fireworks move={pos} x="0" y="0" width="1500" paradoxratio="1"/>
@@ -162,6 +166,8 @@ class App extends Component {
             <Parallax move={pos} x="5300" animationclass="vegas-bellagio-slides" floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" asset="Spacer.png"/>
 
             <Parallax move={pos} x="7300" animationclass="vegas-stratosphere-slides" floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" asset="Spacer.png"/>
+            <Parallax move={pos} x="8200" floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" asset="Vegas-Warning-Sign.png"/>
+            <Parallax move={pos} x="8225" floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" asset="Vegas-Warning-Sign.png"/>
 
             <Parallax move={pos} x="50" y="25" paradoxratio="0.5" opacity="0.3" asset="Cloud-Left-Large.png" color="transparent"/>
             <Parallax move={pos} x="440" y="200" paradoxratio="2" opacity="0.4" asset="Cloud-Left-Small.png" color="transparent"/>
@@ -212,7 +218,6 @@ class App extends Component {
             <Parallax move={pos} vw={this.state.vw} x={1900} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Prudential.png"/>
 
             <Parallax move={pos} vw={this.state.vw} x={2300} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Billboard.png"/>
-            <Parallax move={pos} vw={this.state.vw} x={2325} color="transparent" paradoxratio="1" asset="Billboard-Lights.png"/>
 
             <Parallax move={pos} vw={this.state.vw} x={3000} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Citgo.png"/>
             <Parallax move={pos} vw={this.state.vw} x={3500} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Chinatown.png"/>
@@ -220,6 +225,8 @@ class App extends Component {
             <Parallax move={pos} vw={this.state.vw} x={4500} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="City-Hall.png"/>
             <Parallax move={pos} x={5500} floor={this.state.floor} color="transparent" paradoxratio="1" asset="Commons.png"/>
             <Parallax move={pos} x={5940} floor={this.state.floor} color="transparent" paradoxratio="1" asset="Washington-Statue.png"/>
+
+            <Parallax move={pos} x="7450" floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" asset="Vegas-Warning-Sign.png"/>
 
             <Parallax move={pos} x="25" y="25" paradoxratio="0.5" asset="Cloud-Left-Large.png" color="transparent"/>
             <Parallax move={pos} x="400" y="200" paradoxratio="2" asset="Cloud-Left-Small.png" color="transparent"/>
@@ -252,6 +259,7 @@ class App extends Component {
         </Canvas>
         )
         }
+        </EventComponent>
         </div>
     );
   }

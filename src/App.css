@@ -31,14 +31,14 @@
 
 /* popup mechanic (TD garden jumps up from under the "ground") */
 .popup {
-  transform: translateY(+1500px);
-  transition: transform 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  transform: translateY(+3500px);
+  transition: transform 600ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
 }
 .popup.slideIn {
   transform: translateY(0);
 }
 .popup.slideOut {
-  transform: translateY(+500px);
+  transform: translateY(+3500px);
 }
 
 .dropmefromsky {
