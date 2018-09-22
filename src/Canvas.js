@@ -18,15 +18,13 @@ class Canvas extends Component {
 
   handleTouchMove = (e) => {
     console.log('move', e.changedTouches[0].pageX, e.target); 
-
       const delta = e.changedTouches[0].pageX - this.state.startX;
 
       // pass along an obj that looks like wheel event
-      const obj = {deltaY: delta}
+      const obj = {deltaY: delta / 2}
 
       // call the scroll event handler
       this.props.scroll(obj);
-
       this.setState({ startX: e.changedTouches[0].pageX }); 
   }
 
