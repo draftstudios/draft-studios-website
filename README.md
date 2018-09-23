@@ -1,6 +1,6 @@
 Kitchen Sink Project Featured in "ColdFusion + ReactJS: Expanding Horizons Through Interactivity Programming"
 
-Full live code of the Draft Studios Website
+Full live code of the Draft Studios website running on our playground server [http://ds1.tavo.io:8003](http://ds1.tavo.io:8003)
 
 ## Table of Contents
 
@@ -8,7 +8,7 @@ Full live code of the Draft Studios Website
 - [Available Scripts](#available-scripts)
   - [npm start](#npm-start)
   - [npm run build](#npm-run-build)
-- [The ColdFusion Part](#coldfusion-part)
+- [The ColdFusion Part](#the-coldfusion-part)
 - [Why??](#why)
   
 ## Sending Feedback
