@@ -1,6 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+Kitchen Sink Project Featured in "ColdFusion + ReactJS: Expanding Horizons Through Interactivity Programming"
 
-Below you will find some information on how to perform common tasks.<br>
+Full live code of the Draft Studios Website
 
 ## Table of Contents
 
@@ -8,6 +8,12 @@ Below you will find some information on how to perform common tasks.<br>
 - [Available Scripts](#available-scripts)
   - [npm start](#npm-start)
   - [npm run build](#npm-run-build)
+- [The ColdFusion Part](#coldfusion-part)
+- [Why??](#why)
+  
+## Sending Feedback
+
+Feel free to contact us using the Contact Form at the bottom of [http://draftstudios.com](http://draftstudios.com). We'd love to hear your thoughts, issues, and concerns. We usually respond within 48-hours. Reach out to us if you want our professional assistance as well. We do anything for money. Okay, bye!
 
 ## Available Scripts
 
@@ -29,6 +35,10 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
-See the section about [deployment](#deployment) for more information.
+## The ColdFusion Part
 
-Why did we build it?? Basically, because it's fun and cuz we can. It started as a little project where we could showcase our talents online while keeping things fun. We wanted it to resemble the side scrolling video games we grew up playing. We dont exactly get to sit at home all day playing games after school anymore, so this was kind of our adult version of that. Mixing a little nostalgia with a little bit of business.  
+ColdFusion assets are located in /draft-studios-website/public/ and /draft-studios-website/public/services/. As long as you copy the build folder after running `npm run build` onto a ColdFusion Web Server reachable directory, everything should work fine.
+
+## Why??
+
+Why did we build it?? Basically, because it's fun and because we can. It started as a little project where we could showcase our talents online while keeping things light-hearted. We wanted it to resemble the side-scrolling video games we grew up playing, with throw-backs to The Simpsons and Mario. We don't exactly get to sit at home all day playing games after school anymore, so this is kind of our adult version of that. Mixing in a little nostalgia with a little bit of business.  
