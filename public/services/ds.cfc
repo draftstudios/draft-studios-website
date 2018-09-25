@@ -64,6 +64,17 @@
             <cfset tmp = ArrayAppend(result, struct)>
         </cfloop>
 
+        <!--- what if we want to go the query route? --->
+		<cfset rows = 50>
+
+        <!--- let's make a fake query --->
+		<cfset qry = queryNew("asset,x,paradoxratio,imgclass,color")>
+		<cfloop from="1" to="#rows#" index="i">
+			<cfset tmp = queryAddRow(qry, {asset:ListGetAt(assetList,(i mod 5)+1), x:Int(Rand() * 1500), paradoxratio: 1, imgclass:"", color:"###returnRandomHEXColors(1)#"})>
+        </cfloop>
+        <cfdump var=#qry#>
+		<cfset result = QueryToArray(qry)>
+
         <cfscript>
             threadName = "ws_msg_" & createUUID();
             msg = url.message ? : "";
@@ -78,6 +89,22 @@
 
             writeOutput(msg);
         </cfscript>
+  </cffunction>
+
+  <cffunction name="QueryToArray" access="private" hint="transpose query object to something more serializable">
+    <!--- ray camden first wrote one of these functions, props to him --->
+    <cfargument type="query" name="q">
+        <cfset result = ArrayNew(1)>
+        <cfset cols = q.columnList>
+        <cfset colsLen = listLen(cols)>
+        <cfloop from="1" to="#q.recordCount#" index="i">
+            <cfset struct = {}>
+            <cfloop from="1" to="#colsLen#" index="k">
+				<cfset struct[lcase(listGetAt(cols, k))] = q[listGetAt(cols, k)][i]>
+            </cfloop>
+            <cfset tmp = ArrayAppend(result, struct)>
+        </cfloop>
+    <cfreturn result>
   </cffunction>
 
   <cffunction name="subscribers" access="remote" hint="get websocket subscribers" returnFormat="plain">
