@@ -80,7 +80,7 @@
         </cfscript>
   </cffunction>
 
-  <cffunction name="subscribers" access="remote" hint="get websocket subscribers" returnFormat="json">
+  <cffunction name="subscribers" access="remote" hint="get websocket subscribers" returnFormat="plain">
     <cfheader name="Access-Control-Allow-Origin" value="*">
         <cfscript>
             result = StructNew();
