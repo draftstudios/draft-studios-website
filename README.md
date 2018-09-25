@@ -4,6 +4,7 @@ Full live code of the Draft Studios website running on our playground server [ht
 
 ## Table of Contents
 
+- [Installing](#installing)
 - [Sending Feedback](#sending-feedback)
 - [Available Scripts](#available-scripts)
   - [npm start](#npm-start)
@@ -11,6 +12,14 @@ Full live code of the Draft Studios website running on our playground server [ht
 - [The ColdFusion Part](#the-coldfusion-part)
 - [Why??](#why)
   
+## Installing
+
+Pretty typical for ReactJS projects, after cloning the repository, change-directory to it and run:
+
+### `npm install`
+
+Once that's done, run one of the options in [Available Scripts](#available-scripts).
+
 ## Sending Feedback
 
 Feel free to contact us using the Contact Form at the bottom of [http://draftstudios.com](http://draftstudios.com). We'd love to hear your thoughts, issues, and concerns. We usually respond within 48-hours. Reach out to us if you want our professional assistance as well. We do anything for money. Okay, bye!
