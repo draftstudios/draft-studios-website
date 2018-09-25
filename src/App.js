@@ -33,7 +33,7 @@ import Floor from './Floor';
 import Parallax from './Parallax';
 import Fireworks from './Fireworks';
 import Notification from './Notification';
-// import FetchColdFusionAssets from './FetchColdFusionAssets';
+import FetchColdFusionAssets from './FetchColdFusionAssets';
 
 // test
 import EventComponent from './EventComponent'; 
@@ -189,9 +189,7 @@ class App extends Component {
 
             <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="1.1" opacity="1" asset="Vegas-Front-Trees.png" color="transparent"/>
 
-            {/* 
             <FetchColdFusionAssets move={pos} floor={this.state.street}/>
-            */}
 
             {/* <Paralax scroll={this.handleWheel} move={scrollChange} x="750" y="100" paradoxratio="1.25"/> */} 
             {/* below "floor" should really be set to total width of ground covered by all assets in the Parallax category */}
@@ -242,6 +240,8 @@ class App extends Component {
             <Parallax move={pos} x="1700" y="125" paradoxratio="2.25" asset="Cloud-Right-Small.png" color="transparent"/>
             <Parallax move={pos} x="2750" y="10" paradoxratio="0.25" asset="Clouds-Left-Med.png" color="transparent"/>
             <Parallax move={pos} x="3750" y="80" paradoxratio="1.25" asset="Cloud-Left-Large.png" color="transparent"/>
+
+            <FetchColdFusionAssets move={pos} floor={this.state.street}/>
 
             <Parallax x="0" floor={this.state.street} maxheight="15vh" color="transparent" paradoxratio="1.5" asset="Train.png" imgclass="train"/>
             <Parallax x="0" floor={this.state.street} maxheight="15vh" color="transparent" paradoxratio="1.5" asset="Taxi-Camry.png" imgclass="camry"/>

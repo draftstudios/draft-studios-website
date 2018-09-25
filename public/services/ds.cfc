@@ -2,10 +2,6 @@
 
   <cfsetting requesttimeout="120"/>
 
-  <cffunction name="fetch" access="remote" hint="get ColdFusion-controlled assets" returnformat="json">
-    <cfargument type="string" name="broadcast" default="1">
-    <cfheader name="Access-Control-Allow-Origin" value="*">
-
         <cfscript>
         function returnRandomHEXColors(numToReturn) {
             var returnList = ""; 
@@ -23,6 +19,10 @@
             return returnList;
         }
         </cfscript>
+
+  <cffunction name="fetch" access="remote" hint="get ColdFusion-controlled assets" returnformat="json">
+    <cfargument type="string" name="broadcast" default="1">
+    <cfheader name="Access-Control-Allow-Origin" value="*">
 
         <cfset assetList = "Duck-Boat.png,Sailboat.png,Train.png,Taxi-Camry.png,Taxi-Prius.png">
         <cfset result = ArrayNew(1)>
@@ -47,4 +47,59 @@
     <cfreturn result>
 
   </cffunction>
+
+  <cffunction name="broadcast" access="remote" hint="send a websocket message" returnType="void">
+    <cfargument type="string" name="type" default="default">
+    <cfheader name="Access-Control-Allow-Origin" value="*">
+
+        <cfset assetList = "Duck-Boat.png,Sailboat.png,Train.png,Taxi-Camry.png,Taxi-Prius.png">
+        <cfset result = ArrayNew(1)>
+        <cfloop from="1" to="5" index="myInd">
+            <cfset struct = {}>
+            <cfset struct['asset'] = ListGetAt(assetList,(myInd mod 5)+1)> 
+            <cfset struct['x'] = Int(Rand() * 1500)> 
+            <cfset struct['paradoxratio'] = 1> 
+            <cfset struct['imgclass'] = ""> 
+            <cfset struct['color'] = "###returnRandomHEXColors(1)#"> 
+            <cfset tmp = ArrayAppend(result, struct)>
+        </cfloop>
+
+        <cfscript>
+            threadName = "ws_msg_" & createUUID();
+            msg = url.message ? : "";
+
+            if (!msg.len()){
+                msg = SerializeJSON(result);
+            }
+
+            cfthread(action:"run",name:threadName,message:msg){
+                WsPublish("cf-summit",attributes.message);
+            }
+
+            writeOutput(msg);
+        </cfscript>
+  </cffunction>
+
+  <cffunction name="subscribers" access="remote" hint="get websocket subscribers" returnFormat="json">
+    <cfheader name="Access-Control-Allow-Origin" value="*">
+        <cfscript>
+            result = StructNew();
+            topLevelChannels = WSGetAllChannels();
+            for (channel in topLevelChannels){
+                subChannels = WSGetAllChannels(channel);
+                if (subChannels.len()){
+                    for (subChannel in subChannels)
+                        savecontent variable="result" { 
+                            writeDump(label:subChannel,var:WSGetSubscribers(subChannel))
+                        }
+                } else {
+                    savecontent variable="result" { 
+                        writeDump(label:channel,var:WSGetSubscribers(channel));
+                    }
+                }
+            }
+        </cfscript>
+    <cfreturn result>
+  </cffunction>
+
 </cfcomponent>
