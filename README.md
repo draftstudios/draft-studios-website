@@ -18,7 +18,7 @@ Pretty typical for ReactJS projects, after cloning the repository, change-direct
 
 ### `npm install`
 
-Once that's done, run one of the options in [Available Scripts](#available-scripts).
+Once that's done, run one of the options in [Available Scripts](#available-scripts), preferably `npm start`.
 
 ## Sending Feedback
 
