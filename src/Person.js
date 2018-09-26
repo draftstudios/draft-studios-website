@@ -55,6 +55,7 @@ class Person extends Component {
   }
 
   componentDidMount() {
+      // first time mounting this, drop from the sky (by giving slideIn class which applies the transformation).
       if (this.state.slidein !== "slideIn") {
         this.setState({slidein: "slideIn"});
           //console.log("setting state", this.state.slidein);
@@ -66,16 +67,8 @@ class Person extends Component {
     this.setState({ deltaY: 0, running: 0 });
   }
 
-  shouldIJump = () => {
-    return Math.abs(this.state.deltaY) > 300 ? true : false;  
-  }
-
   facing = (direction) => {
     return direction ? "person av-forward" : "person av-backward";
-  }
-
-  startRun = () => {
-    this.setState({ running: 1 });        
   }
 
   render() {

@@ -180,67 +180,6 @@ html, body, #app, #app>div {
   background: url('/assets/Vegas-Jimmy-Slides.png'); 
 }
 
-/* just for fun... if I run really fast, my avatar will do a mini-jump for no reason */
-div.makemejump {
- -webkit-animation: jump 2s ease 0s infinite normal ;
- animation: jump 2s ease 0s infinite normal ;
-}
-
-@-webkit-keyframes jump {
-  0%{
-	-webkit-transform: translateY(0);
-	transform: translateY(0);
-  }
-  20%{
-	-webkit-transform: translateY(0);
-	transform: translateY(0);
-  }
-  40%{
-	-webkit-transform: translateY(-30px);
-	transform: translateY(-30px);
-  }
-  40%{
-	-webkit-transform: translateY(0);
-	transform: translateY(0);
-  }
-  50%{
-	-webkit-transform: translateY(0);
-	transform: translateY(0);
-  }
-  60%{
-	-webkit-transform: translateY(-15px);
-	transform: translateY(-15px);
-  }
-  100%{
-	-webkit-transform: translateY(0);
-	transform: translateY(0);
-  }
-}
-
-@keyframes jump {
-  0%{
-	transform: translateY(0);
-  }
-  20%{
-	transform: translateY(0);
-  }
-  40%{
-	transform: translateY(-30px);
-  }
-  40%{
-	transform: translateY(0);
-  }
-  50%{
-	transform: translateY(0);
-  }
-  60%{
-	transform: translateY(-15px);
-  }
-  100%{
-	transform: translateY(0);
-  }
-}
-
 @keyframes pan {
   0%{
 	transform: translateX(12000px);
