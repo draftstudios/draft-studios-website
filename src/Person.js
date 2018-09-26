@@ -37,22 +37,17 @@ class Person extends Component {
       }
   }, 300);
 
-  componentWillReceiveProps(nextProps){
-    if (nextProps.deltay !== this.props.deltay) {
-      this.setState({ deltaY: nextProps.deltay });
-      this.setState({ direction: nextProps.deltay });
+  componentDidUpdate(prevProps) {
+    if (prevProps.deltay !== this.props.deltay) {
+      this.setState({ deltaY: this.props.deltay });
+      this.setState({ direction: this.props.deltay });
     }
 
-    if (nextProps.pos !== this.props.pos) {
+    if (prevProps.pos !== this.props.pos) {
       this.setState({ running: 1 });
         // here i'm marking running status if we're scrolling
-    } else {
-      this.setState({ running: 0, runToggle: 0 });
-        // if not moving (no pos) then reset running and runToggle frame...
-    }
-  }
+    } 
 
-  componentDidUpdate(prevProps) {
     if (this.props.deltay !== prevProps.deltay) {
         clearTimeout(this.timerID);
         this.timerID = this.timer(); //start and track a new timer

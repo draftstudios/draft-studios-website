@@ -17,7 +17,6 @@
 //
 //
 // TOPICS NOT COVERED THAT ARE IMPORTANT IN YOUR LEARNING?
-//  props vs state
 //  controlled/uncontrolled components (does the component need to be state aware)
 //  higher order components (wrappers)
 //  routing
