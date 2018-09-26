@@ -36,7 +36,7 @@ class FetchColdFusionAssets extends Component {
   }
 
   componentDidMount() {
-    // ****** first way! web sockets yay!
+    // ****** first way! web sockets yay! using default port that comes open out-of-box CF 2018
     let socket = new WebSocket("ws://127.0.0.1:8581");
       //console.log(socket);
 
@@ -45,15 +45,15 @@ class FetchColdFusionAssets extends Component {
 
           socket.send(
             JSON.stringify( {
-              appName: "cf-summit-2018", //App Name
+              appName: "cf-summit-2018", //should match
               ns: "coldfusion.websocket.channels",
-              subscribeTo: "cf-summit", //Channel subscribing to
+              subscribeTo: "cf-summit", //should match what's in /public/services/Application.cfc
               type: "welcome"
             } )
           );
 
           /* if you want to broadcast a websocket message directly from javascript, use this:
-           
+           *
               socket.send(
                 JSON.stringify( {
                   ns: "coldfusion.websocket.channels",
@@ -63,6 +63,11 @@ class FetchColdFusionAssets extends Component {
                   data: [{id: 1, asset: "Bird-1.png", x: 400, paradoxratio: 1, imgclass: "bird", color: "red"},{id: 2, asset: "Bird-2.png", x: 600, paradoxratio: 1, imgclass: "bird", color: "yellow"}]
                 } )
               );
+
+           * for most implementations a fetch like fetchFromWS() works just fine
+              fetchFromWS = (params) => fetch("http://127.0.0.1:8080/services/ds.cfc?method=broadcast&params="+params).then(function(response) { 
+                return true;
+              })
           */
     };
 
@@ -79,17 +84,6 @@ class FetchColdFusionAssets extends Component {
     };
   }
 
-  componentWillUnmount() {
-    this.isCancelled = true;
-  }
-
-  // ****** second way! straight cfcs! be mindful of CORS 
-  fetchFromCFC = (params) => fetch("http://127.0.0.1:8080/services/ds.cfc?method=fetch&params="+params).then(function(response) { 
-    return response.json();
-  }).then((rawdata) => {
-    this.gotUpdateFromCFC(rawdata);
-  })
-
   fetchFromWS = (params) => fetch("http://127.0.0.1:8080/services/ds.cfc?method=broadcast&params="+params).then(function(response) { 
     return true;
   })
@@ -103,6 +97,17 @@ class FetchColdFusionAssets extends Component {
     })
   }
 
+  // ****** second way! straight cfcs! be mindful of CORS, also make sure component cache isn't on in CF admin if you're actively working 
+  fetchFromCFC = (params) => fetch("http://127.0.0.1:8080/services/ds.cfc?method=fetch&params="+params).then(function(response) { 
+    return response.json();
+  }).then((rawdata) => {
+    this.gotUpdateFromCFC(rawdata);
+  })
+
+  componentWillUnmount() {
+    this.isCancelled = true;
+  }
+
   render() {
     const json = this.state.json; 
     const mode = this.props.mode; //boston or vegas
@@ -114,9 +119,10 @@ class FetchColdFusionAssets extends Component {
             )}
 
             <div style={{position: "absolute"}}>
-                <button onClick={this.fetchFromCFC}>Change Everyone's Duck-Boats (CFC)</button>
-                <button onClick={this.fetchFromWS}>Change Everyone's Duck-Boats (WS)</button>
-                <button onClick={(e, mode)=>this.fetchWorldBoss(mode)}>Deploy WORLD BOSSES!! (WS)</button>
+                <span className='video-game-button noselect' onClick={this.fetchFromCFC}>A</span>
+                <span className='video-game-button noselect' onClick={this.fetchFromWS}>B</span>  
+                <span className='start-btn noselect' onClick={(e, mode)=>this.fetchWorldBoss(mode)}>DEPLOY WORLD BOSS!</span>
+                <span className='start-btn noselect'>START</span> 
             </div>
         </div>
     );
