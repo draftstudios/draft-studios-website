@@ -104,6 +104,10 @@ class FetchColdFusionAssets extends Component {
     this.gotUpdateFromCFC(rawdata);
   })
 
+  takeMeToDraftStudios = () => {
+      window.location = "http://draftstudios.com";
+  }
+
   componentWillUnmount() {
     this.isCancelled = true;
   }
@@ -122,7 +126,7 @@ class FetchColdFusionAssets extends Component {
                 <span className='video-game-button noselect' onClick={this.fetchFromCFC}>A</span>
                 <span className='video-game-button noselect' onClick={this.fetchFromWS}>B</span>  
                 <span className='start-btn noselect' onClick={(e, mode)=>this.fetchWorldBoss(mode)}>DEPLOY WORLD BOSS!</span>
-                <span className='start-btn noselect'>START</span> 
+                <span className='start-btn noselect' onClick={this.takeMeToDraftStudios}>START</span> 
             </div>
         </div>
     );

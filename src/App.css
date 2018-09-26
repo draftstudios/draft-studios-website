@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
 /* default create-react-app styles */
 .App {
   display: flex;
@@ -244,7 +246,7 @@ div.makemejump {
 	transform: translateX(12000px);
   }
   100%{
-	transform: translateX(-3000px);
+	transform: translateX(-2000px);
   }
 }
 
@@ -254,6 +256,18 @@ div.makemejump {
   }
   100%{
 	transform: translateX(-100000px);
+  }
+}
+
+@keyframes pan-worldboss {
+  0%{
+	transform: translateX(12000px);
+  }
+  15%{
+	transform: translateX(7500px);
+  }
+  100%{
+	transform: translateX(-2000px);
   }
 }
 
@@ -270,7 +284,7 @@ div.makemejump {
 }
 
 .worldboss {
-  animation: pan 90s ease 0s normal forwards;
+  animation: pan-worldboss 90s ease 0s normal forwards;
 }
 
 .worldboss-shake {
@@ -853,7 +867,6 @@ div.makemejump {
 	position: relative;
 	top: .2em;
 }
-@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
