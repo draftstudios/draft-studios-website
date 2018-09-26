@@ -25,7 +25,6 @@
 //  data flow and state management: Redux/Flux/RxJS/vanilla/axios/fetch... too many options
 
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Canvas from './Canvas';
 import Person from './Person';
@@ -51,6 +50,7 @@ class App extends Component {
         deltaY: 0,
         currentPosition: 0,
         freeze: 0,
+        shaking: false,
         mode: "vegas",
     };
   }
@@ -113,12 +113,15 @@ class App extends Component {
           });
       }
 
-      e.preventDefault();
-      e.stopPropagation();
+      // checking this since swipe won't be a real wheel event
+      e.preventDefault ? e.preventDefault() : null;
+      e.stopPropagation ? e.stopPropagation() : null;
   }
 
   handleKeys = (e) => {
       const currentposition = this.state.currentPosition;
+      // currently handeKeys will allow you to bypass teleporter :) easter egg bug
+      
       if (e.key === "ArrowRight" || e.key === "ArrowDown") {
         this.setState({
             deltaMode: 0,
@@ -134,12 +137,23 @@ class App extends Component {
       }
   }
 
+  startWorldBossShake = () => {
+      // a anti-pattern but who cares...
+        this.setState({
+            shaking: true 
+        }, () => setTimeout(() => { 
+            this.setState(() => ({shaking: false}));
+          }, 5000)
+        );
+  }
+
   render() {
     const scrollChange = this.state.deltaY;
     const vegasMaxScroll = 8300 - this.state.vw / 2 + 150; //basically total asset width minus half the viewport and adjust by person width
     const bostonMaxScroll = 7500 - this.state.vw / 2 + 150;
     const pos = this.state.currentPosition;
     const freeze = this.state.freeze;
+    const shaking = this.state.shaking ? " worldboss-shake " : " ";
     const mode = this.state.mode;
 
     return (
@@ -150,7 +164,7 @@ class App extends Component {
         {
          
         (mode === "vegas" && 
-        <Canvas mode={mode} tabIndex="1" key="1" scroll={(e) => freeze ? this.handleWheel(e, vegasMaxScroll, true) : this.handleWheel(e, vegasMaxScroll) }>
+        <Canvas mode={mode} className={shaking} tabIndex="1" key="1" scroll={(e) => freeze ? this.handleWheel(e, vegasMaxScroll, true) : this.handleWheel(e, vegasMaxScroll) }>
         {/* this is how i'll handle max scroll */}
 
             {/* vegas!!! */}
@@ -189,12 +203,12 @@ class App extends Component {
 
             <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="1.1" opacity="1" asset="Vegas-Front-Trees.png" color="transparent"/>
 
-            <FetchColdFusionAssets move={pos} floor={this.state.street}/>
+            <FetchColdFusionAssets move={pos} startshaking={this.startWorldBossShake} floor={this.state.street} mode={mode}/>
 
             {/* <Paralax scroll={this.handleWheel} move={scrollChange} x="750" y="100" paradoxratio="1.25"/> */} 
             {/* below "floor" should really be set to total width of ground covered by all assets in the Parallax category */}
 
-            <Parallax x="0" floor={this.state.street} maxheight="15vh" color="transparent" paradoxratio="1.5" asset="Taxi-Prius.png" imgclass="prius"/>
+            <Parallax x="0" floor={this.state.street} color="transparent" paradoxratio="1.5" asset="Taxi-Prius.png" imgclass="prius"/>
 
             {/* if i leave move={pos} then React will keep re-rendering since the props is changing as I scroll 
                 <Floor x="0" nowrap="1" maxheight={this.state.street} paradoxratio="1" width="100000"/>              
@@ -211,7 +225,7 @@ class App extends Component {
         </Canvas>
         ) ||
         (mode === "boston" && 
-        <Canvas mode={mode} tabIndex="2" key="2" scroll={(e) => freeze ? this.handleWheel(e, bostonMaxScroll, true) : this.handleWheel(e, bostonMaxScroll) }>
+        <Canvas mode={mode} className={shaking} tabIndex="2" key="2" scroll={(e) => freeze ? this.handleWheel(e, bostonMaxScroll, true) : this.handleWheel(e, bostonMaxScroll) }>
 
             {/*
             <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="0.75" opacity="0.5" asset="Background-Buildings.png" color="transparent"/>
@@ -241,10 +255,10 @@ class App extends Component {
             <Parallax move={pos} x="2750" y="10" paradoxratio="0.25" asset="Clouds-Left-Med.png" color="transparent"/>
             <Parallax move={pos} x="3750" y="80" paradoxratio="1.25" asset="Cloud-Left-Large.png" color="transparent"/>
 
-            <FetchColdFusionAssets move={pos} floor={this.state.street}/>
+            <FetchColdFusionAssets move={pos} startshaking={this.startWorldBossShake} floor={this.state.street} mode={mode}/>
 
-            <Parallax x="0" floor={this.state.street} maxheight="15vh" color="transparent" paradoxratio="1.5" asset="Train.png" imgclass="train"/>
-            <Parallax x="0" floor={this.state.street} maxheight="15vh" color="transparent" paradoxratio="1.5" asset="Taxi-Camry.png" imgclass="camry"/>
+            <Parallax x="0" floor={this.state.street} color="transparent" paradoxratio="1.5" asset="Train.png" imgclass="train"/>
+            <Parallax x="0" floor={this.state.street} color="transparent" paradoxratio="1.5" asset="Taxi-Camry.png" imgclass="camry"/>
 
             <Floor move={pos} x="0" maxheight={this.state.floor} paradoxratio="1" width="20000"/>
             <Person key="2" imgclass="person-slides-jimmy" pos={pos} floor={this.state.floor} deltamode={this.state.deltaMode} deltay={scrollChange} maxscroll={bostonMaxScroll} />

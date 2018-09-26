@@ -19,7 +19,13 @@ class FetchColdFusionAssets extends Component {
   gotUpdateFromSocket = (data) => {
       //console.log(data);
       if (data) {
-          this.setState({ json: JSON.parse(data) });
+          const const_data = JSON.parse(data);
+
+          console.log(const_data[0].imgclass);
+          if (const_data[0].imgclass === "worldboss") {
+            this.props.startshaking();
+          }
+          this.setState({ json: const_data });
       }
   }
 
@@ -80,25 +86,34 @@ class FetchColdFusionAssets extends Component {
     this.gotUpdateFromCFC(rawdata);
   })
 
-  fetchFromWS = (params) => fetch("http://127.0.0.1:8080/services/broadcast.cfm?params="+params).then(function(response) { 
-    return response.json();
-  }).then((rawdata) => {
-      // don't really have to do anything... the websocket should update content
+  fetchFromWS = (params) => fetch("http://127.0.0.1:8080/services/ds.cfc?method=broadcast&params="+params).then(function(response) { 
+    return true;
   })
+
+  fetchWorldBoss = (params) => {
+      this.props.startshaking(); // this is coming from props (App.js -> startWorldBossShake) 
+      fetch("http://127.0.0.1:8080/services/ds.cfc?method=broadcastWorldBoss&params="+params).then(function(response) { 
+      return true;
+    }).then((rawdata) => {
+        // don't really have to do anything... the websocket should update content
+    })
+  }
 
   render() {
     const json = this.state.json; 
     const color = this.state.color;
+    const mode = this.props.mode; //boston or vegas
 
     return (
         <div>
             {json.map(obj => 
-                <Parallax key={obj.x} move={this.props.move} x={obj.x} floor={this.props.floor} color={obj.color} paradoxratio={obj.paradoxratio} asset={obj.asset} imgclass={obj.imgclass}/>
+                <Parallax key={obj.key} move={this.props.move} x={obj.x} floor={this.props.floor} color={obj.color} paradoxratio={obj.paradoxratio} asset={obj.asset} imgclass={obj.imgclass}/>
             )}
 
             <div style={{position: "absolute"}}>
                 <button onClick={this.fetchFromCFC}>Change Everyone's Duck-Boats (CFC)</button>
                 <button onClick={this.fetchFromWS}>Change Everyone's Duck-Boats (WS)</button>
+                <button onClick={(mode)=>this.fetchWorldBoss(mode)}>Deploy WORLD BOSSES!! (WS)</button>
             </div>
         </div>
     );
