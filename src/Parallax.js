@@ -34,7 +34,7 @@ class Parallax extends Component {
         const clss = (popup, move, x) => (
             popup==="1" && 
             move + (this.props.vw / 2) // current position relative to travel line
-            > x - (this.props.vw / 8) 
+            > x - (this.props.vw / 2.25) 
             ? ' slideIn' : ' slideOut'
         );
 

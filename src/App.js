@@ -138,19 +138,19 @@ class App extends Component {
   }
 
   startWorldBossShake = () => {
-      // a anti-pattern but who cares...
+      // a anti-pattern but we're just fooling around...
         this.setState({
             shaking: true 
         }, () => setTimeout(() => { 
             this.setState(() => ({shaking: false}));
-          }, 5000)
+          }, 10000)
         );
   }
 
   render() {
     const scrollChange = this.state.deltaY;
     const vegasMaxScroll = 8300 - this.state.vw / 2 + 150; //basically total asset width minus half the viewport and adjust by person width
-    const bostonMaxScroll = 7500 - this.state.vw / 2 + 150;
+    const bostonMaxScroll = 9800 - this.state.vw / 2 + 150;
     const pos = this.state.currentPosition;
     const freeze = this.state.freeze;
     const shaking = this.state.shaking ? " worldboss-shake " : " ";
@@ -168,9 +168,7 @@ class App extends Component {
         {/* this is how i'll handle max scroll */}
 
             {/* vegas!!! */}
-            {/*
-            <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="0.7" opacity="0.3" asset="Vegas-Sand-Dunes.png" color="transparent"/>
-            */}
+            <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="0.7" opacity="0.5" asset="Vegas-Sand-Dunes.png" color="transparent"/>
             <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="0.8" opacity="0.5" asset="Vegas-Background-Buildings.png" color="transparent"/>
             <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="1.3" opacity="1" asset="Vegas-Back-Trees.png" color="transparent"/>
 
@@ -197,9 +195,9 @@ class App extends Component {
             <Parallax move={pos} x="3750" y="80" paradoxratio="1.25" opacity="0.2" asset="Cloud-Left-Large.png" color="transparent"/>
 
             <Parallax move={pos} x="100" floor={this.state.floor} color="transparent" paradoxratio="0.75" asset="Bird-1.png" imgclass="bird"/>
-            <Parallax move={pos} x="300" floor={this.state.floor} color="transparent" paradoxratio="1.5" asset="Bird-2.png" imgclass="bird"/>
-            <Parallax move={pos} x="800" floor={this.state.floor} color="transparent" paradoxratio="0.75" asset="Bird-1.png" imgclass="bird"/>
             <Parallax move={pos} x="1000" floor={this.state.floor} color="transparent" paradoxratio="1.5" asset="Bird-2.png" imgclass="bird"/>
+            <Parallax move={pos} x="3400" floor={this.state.floor} color="transparent" paradoxratio="1.5" asset="Bird-2.png" imgclass="bird"/>
+            <Parallax move={pos} x="5800" floor={this.state.floor} color="transparent" paradoxratio="0.75" asset="Bird-1.png" imgclass="bird"/>
 
             <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="1.1" opacity="1" asset="Vegas-Front-Trees.png" color="transparent"/>
 
@@ -207,8 +205,6 @@ class App extends Component {
 
             {/* <Paralax scroll={this.handleWheel} move={scrollChange} x="750" y="100" paradoxratio="1.25"/> */} 
             {/* below "floor" should really be set to total width of ground covered by all assets in the Parallax category */}
-
-            <Parallax x="0" floor={this.state.street} color="transparent" paradoxratio="1.5" asset="Taxi-Prius.png" imgclass="prius"/>
 
             {/* if i leave move={pos} then React will keep re-rendering since the props is changing as I scroll 
                 <Floor x="0" nowrap="1" maxheight={this.state.street} paradoxratio="1" width="100000"/>              
@@ -219,6 +215,7 @@ class App extends Component {
             <Person key="1" pos={pos} floor={this.state.floor} deltamode={this.state.deltaMode} deltay={scrollChange} maxscroll={vegasMaxScroll} />
 
             <Parallax move={pos} x="8300" staticclass="vegas-teleporter" animationclass="vegas-teleporter-slides" animateat={vegasMaxScroll} floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" freeze="true" asset="Spacer.png"/>
+            <Parallax x="0" floor={this.state.street} color="transparent" paradoxratio="1.5" asset="Taxi-Prius.png" imgclass="prius"/>
 
             <Notification text="Welcome to our online demo! Scroll your mouse or use the arrow keys to explore. - Draft Studios Team"/>
 
@@ -227,25 +224,34 @@ class App extends Component {
         (mode === "boston" && 
         <Canvas mode={mode} className={shaking} tabIndex="2" key="2" scroll={(e) => freeze ? this.handleWheel(e, bostonMaxScroll, true) : this.handleWheel(e, bostonMaxScroll) }>
 
-            {/*
-            <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="0.75" opacity="0.5" asset="Background-Buildings.png" color="transparent"/>
-            */}
+            <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="0.65" opacity="0.6" asset="Background-Buildings.png" color="transparent"/> 
             <Parallax move={pos} x="0" floor={this.state.floor} paradoxratio="0.85" opacity="1" asset="Background-Trees.png" color="transparent"/> 
 
             <Parallax move={pos} x="100" floor={this.state.floor} color="transparent" opacity="1" paradoxratio="0.8" asset="Zaykim.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={175} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Silo.png"/>
             <Parallax move={pos} vw={this.state.vw} x={800} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="TD-Garden.png"/>
-            <Parallax move={pos} vw={this.state.vw} x={1900} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Prudential.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={1400} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Citgo.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={1600} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Fenway.png"/>
 
-            <Parallax move={pos} vw={this.state.vw} x={2300} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Billboard.png"/>
+            <Parallax move={pos} x={2200} floor={this.state.floor} color="transparent" paradoxratio="1" asset="Commons.png"/>
 
-            <Parallax move={pos} vw={this.state.vw} x={3000} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Citgo.png"/>
-            <Parallax move={pos} vw={this.state.vw} x={3500} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Chinatown.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={3050} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="State-House.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={3550} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Fanieul-Hall.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={3950} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="City-Hall.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={4150} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Library.png"/>
 
-            <Parallax move={pos} vw={this.state.vw} x={4500} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="City-Hall.png"/>
-            <Parallax move={pos} x={5500} floor={this.state.floor} color="transparent" paradoxratio="1" asset="Commons.png"/>
-            <Parallax move={pos} x={5940} floor={this.state.floor} color="transparent" paradoxratio="1" asset="Washington-Statue.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={4650} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Trinity-Church.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={5250} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Twin-Towers.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={5750} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Prudential.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={6250} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Hancock.png"/>
 
-            <Parallax move={pos} x="7450" floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" asset="Vegas-Warning-Sign.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={6750} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Tufts.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={7750} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Chinatown.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={8400} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Hotpot.png"/>
+
+            <Parallax move={pos} x="9200" animationclass="billboard-slides" floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" asset="Spacer.png"/>
+
+            <Parallax move={pos} x="9650" floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" asset="Vegas-Warning-Sign.png"/>
 
             <Parallax move={pos} x="25" y="25" paradoxratio="0.5" asset="Cloud-Left-Large.png" color="transparent"/>
             <Parallax move={pos} x="400" y="200" paradoxratio="2" asset="Cloud-Left-Small.png" color="transparent"/>
@@ -255,27 +261,39 @@ class App extends Component {
             <Parallax move={pos} x="2750" y="10" paradoxratio="0.25" asset="Clouds-Left-Med.png" color="transparent"/>
             <Parallax move={pos} x="3750" y="80" paradoxratio="1.25" asset="Cloud-Left-Large.png" color="transparent"/>
 
+            <Parallax move={pos} x="5025" y="25" paradoxratio="0.5" asset="Cloud-Left-Large.png" color="transparent"/>
+            <Parallax move={pos} x="5400" y="200" paradoxratio="2" asset="Cloud-Left-Small.png" color="transparent"/>
+            <Parallax move={pos} x="5750" y="100" paradoxratio="1.25" asset="Cloud-Right-Large.png" color="transparent"/>
+            <Parallax move={pos} x="6450" y="50" paradoxratio="0.75" asset="Cloud-Right-Med.png" color="transparent"/>
+            <Parallax move={pos} x="6700" y="125" paradoxratio="2.25" asset="Cloud-Right-Small.png" color="transparent"/>
+            <Parallax move={pos} x="7750" y="10" paradoxratio="0.25" asset="Clouds-Left-Med.png" color="transparent"/>
+            <Parallax move={pos} x="8750" y="80" paradoxratio="1.25" asset="Cloud-Left-Large.png" color="transparent"/>
+
             <FetchColdFusionAssets move={pos} startshaking={this.startWorldBossShake} floor={this.state.street} mode={mode}/>
 
             <Parallax x="0" floor={this.state.street} color="transparent" paradoxratio="1.5" asset="Train.png" imgclass="train"/>
-            <Parallax x="0" floor={this.state.street} color="transparent" paradoxratio="1.5" asset="Taxi-Camry.png" imgclass="camry"/>
 
             <Floor move={pos} x="0" maxheight={this.state.floor} paradoxratio="1" width="20000"/>
             <Person key="2" imgclass="person-slides-jimmy" pos={pos} floor={this.state.floor} deltamode={this.state.deltaMode} deltay={scrollChange} maxscroll={bostonMaxScroll} />
             
-            <Parallax move={pos} x="100" floor={this.state.floor} color="transparent" paradoxratio="0.75" asset="Bird-1.png" imgclass="bird"/>
             <Parallax move={pos} x="300" floor={this.state.floor} color="transparent" paradoxratio="1.5" asset="Bird-2.png" imgclass="bird"/>
+            <Parallax move={pos} x="2100" floor={this.state.floor} color="transparent" paradoxratio="0.75" asset="Bird-1.png" imgclass="bird"/>
             <Parallax move={pos} x="800" floor={this.state.floor} color="transparent" paradoxratio="0.75" asset="Bird-1.png" imgclass="bird"/>
-            <Parallax move={pos} x="1000" floor={this.state.floor} color="transparent" paradoxratio="1.5" asset="Bird-2.png" imgclass="bird"/>
+            <Parallax move={pos} x="3000" floor={this.state.floor} color="transparent" paradoxratio="1.5" asset="Bird-2.png" imgclass="bird"/>
+            <Parallax move={pos} x="6000" floor={this.state.floor} color="transparent" paradoxratio="0.75" asset="Bird-1.png" imgclass="bird"/>
+            <Parallax move={pos} x="7100" floor={this.state.floor} color="transparent" paradoxratio="0.75" asset="Bird-1.png" imgclass="bird"/>
+            <Parallax move={pos} vw={this.state.vw} x={2640} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Washington-Statue.png"/>
+            <Parallax move={pos} vw={this.state.vw} x={8900} popup="1" floor={this.state.floor} color="transparent" paradoxratio="1" asset="Gate.png"/>
+            <Parallax x="0" floor={this.state.street} color="transparent" paradoxratio="1.5" asset="Taxi-Camry.png" imgclass="camry"/>
 
             {/*
             <Parallax move={pos} x="5100" floor={this.state.floor} color="transparent" paradoxratio="0.75" asset="Bird-1.png"/>
             <Parallax move={pos} x="5300" floor={this.state.floor} color="transparent" paradoxratio="1.5" asset="Bird-2.png"/>
             */}
 
-            <Parallax move={pos} x="7500" staticclass="vegas-teleporter" animationclass="vegas-teleporter-slides" animateat={bostonMaxScroll} floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" freeze="true" asset="Spacer.png"/>
+            <Parallax move={pos} x="9800" staticclass="vegas-teleporter" animationclass="vegas-teleporter-slides" animateat={bostonMaxScroll} floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" freeze="true" asset="Spacer.png"/>
 
-            <Notification text="Hey, you made it to the secret stage! Can you guess where we're from?"/>
+            <Notification text="Hey, you made it to the secret stage! You'll never guess where we're from. ¯\_(ツ)_/¯"/>
 
         </Canvas>
         )

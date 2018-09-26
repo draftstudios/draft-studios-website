@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Parallax from './Parallax';
-import Notification from './Notification';
 
 // I isolated CF interactions to this one component. 
 // Here I'm going going to show you two ways to potentially grab/get data! WebSockets and a normal Fetch(). 
@@ -12,7 +11,6 @@ class FetchColdFusionAssets extends Component {
     super(props);
     this.state = {
         json: [],
-        color: 'transparent',
     };
   }
 
@@ -25,7 +23,9 @@ class FetchColdFusionAssets extends Component {
           if (const_data[0].imgclass === "worldboss") {
             this.props.startshaking();
           }
-          this.setState({ json: const_data });
+
+          // just in case we get a rogue async state change... trap it 
+          !this.isCancelled && this.setState({ json: const_data });
       }
   }
 
@@ -79,6 +79,10 @@ class FetchColdFusionAssets extends Component {
     };
   }
 
+  componentWillUnmount() {
+    this.isCancelled = true;
+  }
+
   // ****** second way! straight cfcs! be mindful of CORS 
   fetchFromCFC = (params) => fetch("http://127.0.0.1:8080/services/ds.cfc?method=fetch&params="+params).then(function(response) { 
     return response.json();
@@ -101,7 +105,6 @@ class FetchColdFusionAssets extends Component {
 
   render() {
     const json = this.state.json; 
-    const color = this.state.color;
     const mode = this.props.mode; //boston or vegas
 
     return (
@@ -113,7 +116,7 @@ class FetchColdFusionAssets extends Component {
             <div style={{position: "absolute"}}>
                 <button onClick={this.fetchFromCFC}>Change Everyone's Duck-Boats (CFC)</button>
                 <button onClick={this.fetchFromWS}>Change Everyone's Duck-Boats (WS)</button>
-                <button onClick={(mode)=>this.fetchWorldBoss(mode)}>Deploy WORLD BOSSES!! (WS)</button>
+                <button onClick={(e, mode)=>this.fetchWorldBoss(mode)}>Deploy WORLD BOSSES!! (WS)</button>
             </div>
         </div>
     );

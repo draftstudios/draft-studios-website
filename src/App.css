@@ -241,7 +241,7 @@ div.makemejump {
 
 @keyframes pan {
   0%{
-	transform: translateX(10000px);
+	transform: translateX(12000px);
   }
   100%{
 	transform: translateX(-3000px);
@@ -270,7 +270,7 @@ div.makemejump {
 }
 
 .worldboss {
-  animation: pan 40s ease 0s normal forwards;
+  animation: pan 90s ease 0s normal forwards;
 }
 
 .worldboss-shake {
@@ -756,6 +756,23 @@ div.makemejump {
 
 @keyframes play-vegas-teleporter {
    100% { background-position: -2163px; }
+}
+
+.billboard {
+  width: 403px;
+  height: 707px;
+  background: url('/assets/Billboard.png') left center;
+}
+
+.billboard-slides {
+  width: 403px;
+  height: 707px;
+  background: url('/assets/Billboard.png') left center;
+  animation: play-billboard 3s steps(2) infinite;
+}
+
+@keyframes play-billboard {
+   100% { background-position: -806px; }
 }
 
 .notification {
