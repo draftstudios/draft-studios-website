@@ -8,7 +8,6 @@ class Person extends Component {
         slidein: null,
         deltaY: 0,
         direction: 1,
-        running: 0,
         runToggle: 0,
             // 0 will cause running frame 1
             // 1 will cause feet pointing in correct direction (frame 2)
@@ -25,6 +24,7 @@ class Person extends Component {
     this.resetPerson();
   }, 500);
 
+  /*
   animateRun = () => setInterval(() => { 
       // probably the ugliest code you'll see in this demo... most would start to attempt animating like this
       if (this.state.running > 0) {
@@ -36,6 +36,7 @@ class Person extends Component {
           ); 
       }
   }, 300);
+  */
 
   animateRunClean = () => {
     if (!this.isCancelled) {  
@@ -50,11 +51,6 @@ class Person extends Component {
       this.setState({ deltaY: this.props.deltay });
       this.setState({ direction: this.props.deltay });
     }
-
-    if (prevProps.pos !== this.props.pos) {
-      this.setState({ running: 1 });
-        // here i'm marking running status if we're scrolling
-    } 
 
     if (this.props.deltay !== prevProps.deltay) {
         clearTimeout(this.timerID);
@@ -78,7 +74,7 @@ class Person extends Component {
   }
 
   resetPerson = () => {
-    this.setState({ deltaY: 0, running: 0 });
+    this.setState({ deltaY: 0 });
   }
 
   facing = (direction) => {
