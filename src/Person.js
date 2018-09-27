@@ -13,8 +13,8 @@ class Person extends Component {
             // 1 will cause feet pointing in correct direction (frame 2)
             // 2 is swimming motion
             // technically deltaY is determining whether to kick to 0... need to find a way to have it animate other frames if the process is pretty long ms wise.
-        falling: 0,
-        idle: 0,
+        falling: 0, // for later
+        idle: 0, // kinda wanna add an idle animation
     };
     this.timerID = this.timer();
     this.rafID; 

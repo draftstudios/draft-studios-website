@@ -106,7 +106,7 @@ class App extends Component {
       if (!frozen) {
           this.setState({
               deltaMode: e.deltaMode,
-              deltaY: e.deltaY,
+              deltaY: e.deltaY + Math.random(), // fix rate-limited scrolling browsers
               currentPosition: currentposition+e.deltaY > 0 ? (currentposition+e.deltaY > maxscroll ? maxscroll : currentposition + e.deltaY) : 0, 
               freeze: currentposition+e.deltaY > maxscroll ? 1 : 0,
           });
