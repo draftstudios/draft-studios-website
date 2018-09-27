@@ -60,7 +60,7 @@ class FetchColdFusionAssets extends Component {
                   type: "publish",
                   channel: "cf-summit", // Channel Name
                   appName: "cf-summit-2018", //App Name
-                  data: [{id: 1, asset: "Bird-1.png", x: 400, paradoxratio: 1, imgclass: "bird", color: "red"},{id: 2, asset: "Bird-2.png", x: 600, paradoxratio: 1, imgclass: "bird", color: "yellow"}]
+                  data: [{id: 1, asset: "Bird-1.png", x: 400, ratio: 1, imgclass: "bird", color: "red"},{id: 2, asset: "Bird-2.png", x: 600, ratio: 1, imgclass: "bird", color: "yellow"}]
                 } )
               );
 
@@ -119,7 +119,7 @@ class FetchColdFusionAssets extends Component {
     return (
         <div>
             {json.map(obj => 
-                <Parallax key={obj.key} move={this.props.move} x={obj.x} floor={this.props.floor} color={obj.color} paradoxratio={obj.paradoxratio} asset={obj.asset} imgclass={obj.imgclass}/>
+                <Parallax key={obj.key} move={this.props.move} x={obj.x} floor={this.props.floor} color={obj.color} ratio={obj.ratio} asset={obj.asset} imgclass={obj.imgclass}/>
             )}
 
             <div style={{position: "absolute"}}>

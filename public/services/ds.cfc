@@ -33,13 +33,13 @@
 
                 <cfset struct.asset = "Bird-1.png"> 
                 <cfset struct.x = Rand() * 1000> 
-                <cfset struct.paradoxratio = 1> 
+                <cfset struct.ratio = 1> 
                 <cfset struct.imgclass = "bird"> 
                 --->
             <cfset struct['key'] = CreateUUID()>
             <cfset struct['asset'] = ListGetAt(assetList,(myInd mod 5)+1)> 
             <cfset struct['x'] = Int(Rand() * 1500)> 
-            <cfset struct['paradoxratio'] = 1> 
+            <cfset struct['ratio'] = 1> 
             <cfset struct['imgclass'] = ""> 
             <cfset struct['color'] = "###returnRandomHEXColors(1)#"> 
             <cfset tmp = ArrayAppend(result, struct)>
@@ -59,9 +59,9 @@
 		<cfset rows = 5>
 
         <!--- let's make a fake query --->
-		<cfset qry = queryNew("key,asset,x,paradoxratio,imgclass,color")>
+		<cfset qry = queryNew("key,asset,x,ratio,imgclass,color")>
 		<cfloop from="1" to="#rows#" index="i">
-			<cfset tmp = queryAddRow(qry, {key: CreateUUID(), asset:ListGetAt(assetList,(i mod 5)+1), x:Int(Rand() * 1500), paradoxratio: 1, imgclass:"", color:"###returnRandomHEXColors(1)#"})>
+			<cfset tmp = queryAddRow(qry, {key: CreateUUID(), asset:ListGetAt(assetList,(i mod 5)+1), x:Int(Rand() * 1500), ratio: 1, imgclass:"", color:"###returnRandomHEXColors(1)#"})>
         </cfloop>
 
         <!--- dump it so you can see --->
@@ -128,8 +128,8 @@
 
         <!--- taking things one step further... basically we need to combine these two styles of assets: first one is able to animate using animationclass, second one needs to do the fly-by via imgclass
 
-            <Parallax move={pos} x="5300" animationclass="vegas-bellagio-slides" floor={this.state.floor} paradoxratio="1" opacity="1" color="transparent" asset="Spacer.png"/>
-            <Parallax x="0" floor={this.state.street} maxheight="15vh" color="transparent" paradoxratio="1.5" asset="Taxi-Prius.png" imgclass="prius"/>
+            <Parallax move={pos} x="5300" animationclass="vegas-bellagio-slides" floor={this.state.floor} ratio="1" opacity="1" color="transparent" asset="Spacer.png"/>
+            <Parallax x="0" floor={this.state.street} maxheight="15vh" color="transparent" ratio="1.5" asset="Taxi-Prius.png" imgclass="prius"/>
         --->
 
         <cfset assetList = "Vegas-Sheila-Slides.png,Molly-Slides.png">
@@ -140,7 +140,7 @@
                 alternatively we could have stacked divs with separate css animations to achieve same effect --->
             <cfset struct['asset'] = ListGetAt(assetList,Second(Now()) MOD 2 + 1)>
             <cfset struct['x'] = "0">
-            <cfset struct['paradoxratio'] = 1> 
+            <cfset struct['ratio'] = 1> 
             <cfset struct['imgclass'] = "worldboss"> 
             <cfset struct['color'] = "transparent"> 
             <cfset tmp = ArrayAppend(result, struct)>

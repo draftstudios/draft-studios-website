@@ -13,7 +13,7 @@ class Parallax extends Component {
 
   render() {
       //if (this.props.popup === "1") console.log(this.props.move, this.props.x, this.props.vw);
-        const startingpositionx = this.state.startingPositionX - (this.props.move * this.props.paradoxratio); 
+        const startingpositionx = this.state.startingPositionX - (this.props.move * this.props.ratio); 
         const startingpositiony = this.state.startingPositionY;
         const move = this.props.move;
         const x = this.props.x;

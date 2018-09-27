@@ -12,7 +12,7 @@ class Fireworks extends Component {
     }
 
   render() {
-    const startingpositionx = this.state.startingPositionX - (this.props.move * this.props.paradoxratio); 
+    const startingpositionx = this.state.startingPositionX - (this.props.move * this.props.ratio); 
     const startingpositiony = this.state.startingPositionY;
     const floor = this.props.floor;
     const width = this.props.width;
