@@ -50,11 +50,9 @@ class Person extends Component {
     if (prevProps.deltay !== this.props.deltay) {
       this.setState({ deltaY: this.props.deltay });
       this.setState({ direction: this.props.deltay });
-    }
 
-    if (this.props.deltay !== prevProps.deltay) {
-        clearTimeout(this.timerID);
-        this.timerID = this.timer(); //start and track a new timer
+      clearTimeout(this.timerID);
+      this.timerID = this.timer(); //start and track a new timer (for reset animation)
     }
   }
 
