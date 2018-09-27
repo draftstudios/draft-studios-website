@@ -18,7 +18,7 @@ class Person extends Component {
         idle: 0,
     };
     this.timerID = this.timer();
-    this.animateRun();
+    this.rafID; 
   }
 
   timer = () => setTimeout(() => { 
@@ -26,7 +26,7 @@ class Person extends Component {
   }, 500);
 
   animateRun = () => setInterval(() => { 
-      // probably the ugliest code you'll see in this demo... didn't have much time left
+      // probably the ugliest code you'll see in this demo... most would start to attempt animating like this
       if (this.state.running > 0) {
           this.setState({runToggle: 2},
               () => { setTimeout(() => { this.setState({runToggle: 0},
@@ -36,6 +36,14 @@ class Person extends Component {
           ); 
       }
   }, 300);
+
+  animateRunClean = () => {
+    if (!this.isCancelled) {  
+        // each time this frame is called, increment runToggle frame (+1 mod 3 because of the position in spritesheet)
+        this.setState({runToggle: (this.state.runToggle + 1) % 3});
+        this.rafID = setTimeout(()=>requestAnimationFrame(this.animateRunClean), 75); // 75ms frames
+    }
+  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.deltay !== this.props.deltay) {
@@ -61,6 +69,12 @@ class Person extends Component {
           //console.log("setting state", this.state.slidein);
         this.forceUpdate();
       }
+
+      this.animateRunClean();
+  }
+
+  componentWillUnmount() {
+    this.isCancelled = true;
   }
 
   resetPerson = () => {
@@ -68,11 +82,11 @@ class Person extends Component {
   }
 
   facing = (direction) => {
-    return direction ? "person av-forward" : "person av-backward";
+      return direction > 0 ? "person av-forward" : "person av-backward";
   }
 
   render() {
-    const deltay = this.state.deltaY;
+    const deltay = this.state.deltaY; //this is the prop that changes all the time... can we declare everything else based on it?
     const direction = this.state.direction;
     const facing = this.facing(direction);
     const currentRunToggle = this.state.runToggle;
@@ -84,15 +98,15 @@ class Person extends Component {
         atMaxScroll ? 
             (
                 <div className={facing} style={{bottom: this.props.floor, color: "white"}}>
-                    // hardcode teleporter phase to last frame
+                    {/* hardcode teleporter phase to last frame */}
                     <div className={'person-slides ' + imgclass} style={{left:-1200}}>
                     </div>
                 </div>
             ) 
         :
-            // otherwise i'm running
             (
             <div className={facing + ' dropmefromsky ' + slidein} style={{bottom: this.props.floor, color: "white"}}>
+            {/* otherwise i'm running */}
             {
                 deltay > 0 &&
                 <div className={'person-slides ' + imgclass} style={{left:-200 - currentRunToggle * 200}}>
