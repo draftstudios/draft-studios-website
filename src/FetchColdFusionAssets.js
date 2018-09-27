@@ -9,6 +9,8 @@ class FetchColdFusionAssets extends Component {
 
   constructor(props) {
     super(props);
+
+    // note state change will trigger a rerender
     this.state = {
         json: [],
     };
