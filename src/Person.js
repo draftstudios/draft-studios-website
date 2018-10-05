@@ -17,7 +17,7 @@ class Person extends Component {
         idle: 0, // kinda wanna add an idle animation
     };
     this.timerID = this.timer();
-    this.rafID; 
+    this.rafID = undefined; 
   }
 
   timer = () => setTimeout(() => { 

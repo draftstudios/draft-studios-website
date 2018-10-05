@@ -116,7 +116,6 @@ class FetchColdFusionAssets extends Component {
 
   render() {
     const json = this.state.json; 
-    const mode = this.props.mode; //boston or vegas
 
     return (
         <div>
@@ -127,7 +126,7 @@ class FetchColdFusionAssets extends Component {
             <div style={{position: "absolute"}}>
                 <span className='video-game-button noselect' onClick={this.fetchFromCFC}>A</span>
                 <span className='video-game-button noselect' onClick={this.fetchFromWS}>B</span>  
-                <span className='start-btn noselect' onClick={(e, mode)=>this.fetchWorldBoss(mode)}>DEPLOY WORLD BOSS!</span>
+                <span className='start-btn noselect' onClick={this.fetchWorldBoss}>DEPLOY WORLD BOSS!</span>
                 <span className='start-btn noselect' onClick={this.takeMeToDraftStudios}>START</span> 
             </div>
         </div>

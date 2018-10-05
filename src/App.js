@@ -112,14 +112,14 @@ class App extends Component {
           });
       }
 
-      // checking this since swipe won't be a real wheel event
-      e.preventDefault ? e.preventDefault() : null;
-      e.stopPropagation ? e.stopPropagation() : null;
+      // checking this since swipe won't be a real wheel event. also want to prevent regular scroll behaviors
+      if (e.preventDefault) e.preventDefault();
+      if (e.stopPropagation) e.stopPropagation();
   }
 
   handleKeys = (e) => {
       const currentposition = this.state.currentPosition;
-      // currently handeKeys will allow you to bypass teleporter :) easter egg bug
+      // currently handeKeys will allow you to bypass teleporter :) unhandled easter egg 
       
       if (e.key === "ArrowRight" || e.key === "ArrowDown") {
         this.setState({
@@ -137,7 +137,7 @@ class App extends Component {
   }
 
   startWorldBossShake = () => {
-      // a anti-pattern but we're just fooling around...
+      // a anti-pattern but we're fooling around...
         this.setState({
             shaking: true 
         }, () => setTimeout(() => { 

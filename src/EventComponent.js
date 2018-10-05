@@ -27,7 +27,7 @@ export default class EventComponent extends React.Component {
 
   _onTouchMove(e) {
     if (e.changedTouches && e.changedTouches.length) {
-      const touch = e.changedTouches[0];
+      // const touch = e.changedTouches[0];
       this._swipe.swiping = true;
     }
   }
