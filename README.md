@@ -1,6 +1,6 @@
 Kitchen Sink Project Featured in "ColdFusion + ReactJS: Expanding Horizons Through Interactivity Programming"
 
-Full live code of the Draft Studios website running on our playground server [http://draftstudios.com/#whatwedo](http://draftstudios.com/#whatwedo)
+Full live code of the Draft Studios website running on our playground server [http://draftstudios.com/#whatwedo](http://draftstudios.com/#whatwedo) or fullscreen at [http://lab.draftstudios.com](http://lab.draftstudios.com)
 
 Grab the presentation slides here, it will help a lot as you peruse the code! https://goo.gl/q9KCPs
 
