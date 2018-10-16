@@ -39,7 +39,7 @@ class FetchColdFusionAssets extends Component {
 
   componentDidMount() {
     // ****** first way! web sockets yay! using default port that comes open out-of-box CF 2018
-    let socket = new WebSocket("ws://127.0.0.1:8581");
+    let socket = new WebSocket("ws://ds1.tavo.io:8581");
       //console.log(socket);
 
       socket.onopen = () => {
@@ -86,13 +86,13 @@ class FetchColdFusionAssets extends Component {
     };
   }
 
-  fetchFromWS = (params) => fetch("http://127.0.0.1:8080/services/ds.cfc?method=broadcast&params="+params).then(function(response) { 
+  fetchFromWS = (params) => fetch("http://ds1.tavo.io:8080/services/ds.cfc?method=broadcast&params="+params).then(function(response) { 
     return true;
   })
 
   fetchWorldBoss = (params) => {
       this.props.startshaking(); // this is coming from props (App.js -> startWorldBossShake) 
-      fetch("http://127.0.0.1:8080/services/ds.cfc?method=broadcastWorldBoss&params="+params).then(function(response) { 
+      fetch("http://ds1.tavo.io:8080/services/ds.cfc?method=broadcastWorldBoss&params="+params).then(function(response) { 
       return true;
     }).then((rawdata) => {
         // don't really have to do anything... the websocket should update content
@@ -100,7 +100,7 @@ class FetchColdFusionAssets extends Component {
   }
 
   // ****** second way! straight cfcs! be mindful of CORS, also make sure component cache isn't on in CF admin if you're actively working 
-  fetchFromCFC = (params) => fetch("http://127.0.0.1:8080/services/ds.cfc?method=fetch&params="+params).then(function(response) { 
+  fetchFromCFC = (params) => fetch("http://ds1.tavo.io:8080/services/ds.cfc?method=fetch&params="+params).then(function(response) { 
     return response.json();
   }).then((rawdata) => {
     this.gotUpdateFromCFC(rawdata);
@@ -126,8 +126,8 @@ class FetchColdFusionAssets extends Component {
             <div style={{position: "absolute"}}>
                 <span className='video-game-button noselect' onClick={this.fetchFromCFC}>A</span>
                 <span className='video-game-button noselect' onClick={this.fetchFromWS}>B</span>  
-                <span className='start-btn noselect' onClick={this.fetchWorldBoss}>DEPLOY WORLD BOSS!</span>
-                <span className='start-btn noselect' onClick={this.takeMeToDraftStudios}>START</span> 
+                <span className='start-btn noselect' onClick={this.fetchWorldBoss}>WORLD BOSS</span>
+                <span className='start-btn noselect' onClick={this.takeMeToDraftStudios}>MAIN MENU</span> 
             </div>
         </div>
     );

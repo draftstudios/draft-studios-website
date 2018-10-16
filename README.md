@@ -48,7 +48,7 @@ Your app is ready to be deployed!
 
 ## The ColdFusion Part
 
-ColdFusion assets are located in /draft-studios-website/public/ and /draft-studios-website/public/services/. As long as you copy the build folder after running `npm run build` onto a ColdFusion Web Server reachable directory, everything should work fine.
+ColdFusion assets are located in /draft-studios-website/public/ and /draft-studios-website/public/services/. As long as you copy the build folder after running `npm run build` onto a ColdFusion Web Server reachable directory, everything should work fine. Also, remember to rename the index.html file to index.cfm so that it kicks off Application.cfc from root.
 
 ## Why??
 
