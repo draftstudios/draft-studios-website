@@ -755,7 +755,7 @@ html, body, #app, #app>div {
 
 .video-game-button {
   background-color: black;
-  font-size: 30pt;
+  font-size: 24pt;
   font-family: 'Press Start 2p';
 	text-shadow: 1px 1px pink, -1px -1px maroon;
 	line-height: 1.5em;
@@ -783,7 +783,7 @@ html, body, #app, #app>div {
 }
 .start-btn{
   background-color: black;
-  font-size: 30pt;
+  font-size: 24pt;
   font-family: 'Press Start 2p';
     text-align: center;
 	display: inline-block;
