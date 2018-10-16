@@ -140,7 +140,7 @@
             <!--- didn't have time to re-arrange, so cheating here with an apng animation. 
                 alternatively we could have stacked divs with separate css animations to achieve same effect --->
             <cfset struct['asset'] = ListGetAt(assetList,Second(Now()) MOD 2 + 1)>
-            <cfset struct['x'] = "10000">
+            <cfset struct['x'] = "0">
             <cfset struct['ratio'] = 1> 
             <cfset struct['imgclass'] = "worldboss"> 
             <cfset struct['color'] = "transparent"> 
