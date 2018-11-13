@@ -217,6 +217,8 @@ class App extends Component {
                     If max height is higher than current floor height, make Person jump
 
                     should also keep constant gravity... that way we won't have to keep manually tranforming Y to floor
+
+                    if current Y not equal to current floor, animate falling frame
                 */}
 
             <div class="ground" move={pos} shouldIJump={this.shouldPersonJump}>
