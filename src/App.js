@@ -99,6 +99,11 @@ class App extends Component {
     });
   }
 
+  shouldPersonJump = (e) => {
+    // look at the current canvas and objects and determine if Person needs to jump
+    console.log(e);
+  }
+
   handleWheel = (e, maxscroll, frozen) => {
       const currentposition = this.state.currentPosition;
       //console.log(e.deltaMode, e.deltaX, e.deltaY, e.deltaZ)
@@ -110,6 +115,7 @@ class App extends Component {
               currentPosition: currentposition+e.deltaY > 0 ? (currentposition+e.deltaY > maxscroll ? maxscroll : currentposition + e.deltaY) : 0, 
               freeze: currentposition+e.deltaY > maxscroll ? 1 : 0,
           });
+          this.shouldPersonJump(e);
       }
 
       // checking this since swipe won't be a real wheel event. also want to prevent regular scroll behaviors
@@ -204,8 +210,17 @@ class App extends Component {
             {/* coldfusion-specific !!! */}
             <FetchColdFusionAssets move={pos} startshaking={this.startWorldBossShake} floor={this.state.street} mode={mode}/>
 
-            {/* the floor!!! */}
-            <Floor move={pos} x="0" maxheight={this.state.floor} ratio="1" width="20000"/>
+            {/* the floor!!! 
+                    recomposing this a bit... to see if possible 
+                    Ground should have all the Floor objects and given a position, should find max height from all Floor objects within vicinity.
+                    If max height is higher than current floor height, make Person jump
+                */}
+
+            <div class="ground" move={pos} shouldIJump={this.shouldPersonJump}>
+                <Floor move={pos} x="0" maxheight={this.state.floor} ratio="1" width="500"/>
+                <Floor move={pos} x="500" maxheight="30vh" ratio="1" width="2000"/>
+                <Floor move={pos} x="2000" maxheight="5vh" ratio="1" width="17500"/>
+            </div>
 
             {/* person!!! */}
             <Person key="1" pos={pos} floor={this.state.floor} deltamode={this.state.deltaMode} deltay={scrollChange} maxscroll={vegasMaxScroll} />
