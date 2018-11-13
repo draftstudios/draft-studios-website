@@ -212,8 +212,11 @@ class App extends Component {
 
             {/* the floor!!! 
                     recomposing this a bit... to see if possible 
-                    Ground should have all the Floor objects and given a position, should find max height from all Floor objects within vicinity.
+                    Ground should be its own component (probably doesn't need state does it? -- maybe for previous/current floor height)... 
+                    have all the Floor objects and given a position, should find max height from all Floor objects within vicinity.
                     If max height is higher than current floor height, make Person jump
+
+                    should also keep constant gravity... that way we won't have to keep manually tranforming Y to floor
                 */}
 
             <div class="ground" move={pos} shouldIJump={this.shouldPersonJump}>
