@@ -50,7 +50,7 @@ class App extends Component {
         currentPosition: 0,
         freeze: 0,
         shaking: false,
-        mode: "vegas",
+        mode: "dc",
     };
   }
 
@@ -91,7 +91,7 @@ class App extends Component {
   switchModes = () => {          
     const currentMode = this.state.mode;
     this.setState({
-        mode: currentMode === "vegas" ? "boston" : "vegas",
+        mode: currentMode === "dc" ? "vegas" : currentMode === "vegas" ? "boston" : "dc",
         freeze: 0,
         currentPosition: 0,
         deltaMode: 0,
@@ -156,6 +156,8 @@ class App extends Component {
     const scrollChange = this.state.deltaY;
     const vegasMaxScroll = 8300 - this.state.vw / 2 + 150; //basically total asset width minus half the viewport and adjust by person width
     const bostonMaxScroll = 9800 - this.state.vw / 2 + 150;
+    const dcMaxScroll = 8300 - this.state.vw / 2 + 150; //basically total asset width minus half the viewport and adjust by person width
+
     const pos = this.state.currentPosition;
     const freeze = this.state.freeze;
     const shaking = this.state.shaking ? " worldboss-shake " : " ";
@@ -167,16 +169,124 @@ class App extends Component {
 
         <EventComponent>
         {
+
+        (mode === "dc" && 
+        <Canvas mode={mode} className={shaking} tabIndex="1" key="canvas3" scroll={(e) => freeze ? this.handleWheel(e, dcMaxScroll, true) : this.handleWheel(e, dcMaxScroll) }> {/* this is how i'll handle max scroll */}
+            {/* dc!!! */}
+
+
+            {/* buildings!!! */}
+
+            {/*
+            <Parallax move={pos} x="200" animationclass="vegas-sign-glow-slides" floor={this.state.floor} ratio="1" opacity="1" color="transparent" asset="Spacer.png"/>
+            */}
+
+            <Parallax move={pos} x="0" floor={this.state.floor} ratio="1" opacity="1" color="transparent" asset="DC-Washington-Level.png"/>
+            <Parallax move={pos} x="8190" floor={this.state.floor} ratio="1" opacity="1" color="transparent" asset="DC-Washington-Level-Rpt.png"/>
+            <Fireworks move={pos} x="0" y="0" width="1500" ratio="1"/>
+
+            {/* clouds!!! */}
+            <Parallax move={pos} x="250" y="25" ratio="0.5" opacity="0.3" asset="DC-Cloud-1.png" color="transparent"/>
+            <Parallax move={pos} x="340" y="200" ratio="2" opacity="0.4" asset="DC-Cloud-2.png" color="transparent"/>
+            <Parallax move={pos} x="870" y="100" ratio="1.25" opacity="0.4" asset="DC-Cloud-3.png" color="transparent"/>
+            <Parallax move={pos} x="1350" y="50" ratio="0.75" opacity="0.5" asset="DC-Cloud-4.png" color="transparent"/>
+            <Parallax move={pos} x="1650" y="125" ratio="2.25" opacity="0.2" asset="DC-Cloud-5.png" color="transparent"/>
+            <Parallax move={pos} x="2250" y="50" ratio="0.75" opacity="0.5" asset="DC-Cloud-6.png" color="transparent"/>
+            <Parallax move={pos} x="2750" y="80" ratio="1.25" opacity="0.2" asset="DC-Cloud-2.png" color="transparent"/>
+            <Parallax move={pos} x="2850" y="10" ratio="0.15" opacity="0.6" asset="DC-Cloud-3.png" color="transparent"/>
+            <Parallax move={pos} x="3350" y="50" ratio="0.95" opacity="0.5" asset="DC-Cloud-4.png" color="transparent"/>
+            <Parallax move={pos} x="3750" y="80" ratio="1.25" opacity="0.2" asset="DC-Cloud-6.png" color="transparent"/>
+            <Parallax move={pos} x="4350" y="50" ratio="0.85" opacity="0.5" asset="DC-Cloud-3.png" color="transparent"/>
+            <Parallax move={pos} x="4650" y="125" ratio="2.15" opacity="0.2" asset="DC-Cloud-2.png" color="transparent"/>
+            <Parallax move={pos} x="4850" y="10" ratio="0.35" opacity="0.6" asset="DC-Cloud-1.png" color="transparent"/>
+            <Parallax move={pos} x="6750" y="80" ratio="1.15" opacity="0.2" asset="DC-Cloud-3.png" color="transparent"/>
+            <Parallax move={pos} x="10250" y="25" ratio="0.5" opacity="0.3" asset="DC-Cloud-1.png" color="transparent"/>
+            <Parallax move={pos} x="10340" y="200" ratio="0.4" opacity="0.4" asset="DC-Cloud-2.png" color="transparent"/>
+            <Parallax move={pos} x="10870" y="100" ratio="0.3" opacity="0.4" asset="DC-Cloud-3.png" color="transparent"/>
+            <Parallax move={pos} x="101350" y="50" ratio="0.25" opacity="0.5" asset="DC-Cloud-4.png" color="transparent"/>
+
+            {/* birds!!! */}
+            <Parallax move={pos} x="100" floor={this.state.floor} color="transparent" ratio="0.75" asset="Bird-1.png" imgclass="bird"/>
+            <Parallax move={pos} x="1000" floor={this.state.floor} color="transparent" ratio="1.5" asset="Bird-2.png" imgclass="bird"/>
+            <Parallax move={pos} x="5100" floor={this.state.floor} color="transparent" ratio="0.75" asset="Bird-1.png" imgclass="bird"/>
+            <Parallax move={pos} x="51000" floor={this.state.floor} color="transparent" ratio="1.5" asset="Bird-2.png" imgclass="bird"/>
+            <Parallax move={pos} x="7000" floor={this.state.floor} color="transparent" ratio="0.75" asset="Bird-1.png" imgclass="bird"/>
+            <Parallax move={pos} x="8000" floor={this.state.floor} color="transparent" ratio="1.5" asset="Bird-2.png" imgclass="bird"/>
+
+            <Parallax move={pos} x="100" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-1-Slides.png" imgclass="crowd"/>
+            <Parallax move={pos} x="400" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-12-Slides.png" imgclass="crowd-2"/>
+            <Parallax move={pos} x="1100" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-2-Slides.png" imgclass="crowd-3"/>
+            <Parallax move={pos} x="2100" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-3-Slides.png" imgclass="crowd"/>
+            <Parallax move={pos} x="3100" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-4-Slides.png" imgclass="crowd-3"/>
+            <Parallax move={pos} x="2300" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-5-Slides.png" imgclass="crowd"/>
+            <Parallax move={pos} x="4500" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-6-Slides.png" imgclass="crowd-2"/>
+            <Parallax move={pos} x="4700" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-7-Slides.png" imgclass="crowd"/>
+            <Parallax move={pos} x="3050" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-8-Slides.png" imgclass="crowd-3"/>
+            <Parallax move={pos} x="2750" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-9-Slides.png" imgclass="crowd-2"/>
+            <Parallax move={pos} x="3140" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-10-Slides.png" imgclass="crowd-3"/>
+            <Parallax move={pos} x="4000" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-11-Slides.png" imgclass="crowd"/>
+            <Parallax move={pos} x="3000" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-12-Slides.png" imgclass="crowd-2"/>
+            <Parallax move={pos} x="5000" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-1-Slides.png" imgclass="crowd"/>
+            <Parallax move={pos} x="5450" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-12-Slides.png" imgclass="crowd-2"/>
+            <Parallax move={pos} x="7100" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-2-Slides.png" imgclass="crowd-3"/>
+            <Parallax move={pos} x="5100" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-3-Slides.png" imgclass="crowd-3"/>
+            <Parallax move={pos} x="6100" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-4-Slides.png" imgclass="crowd-3"/>
+            <Parallax move={pos} x="6300" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-5-Slides.png" imgclass="crowd"/>
+            <Parallax move={pos} x="5500" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-6-Slides.png" imgclass="crowd-2"/>
+            <Parallax move={pos} x="8700" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-7-Slides.png" imgclass="crowd"/>
+
+            {/* coldfusion-specific !!! */}
+            <FetchColdFusionAssets dc="true" move={pos} startshaking={this.startWorldBossShake} floor={this.state.street} mode={mode}/>
+
+            {/* the floor!!! 
+                    recomposing this a bit... to see if possible 
+                    Ground should be its own component (probably doesn't need state does it? -- maybe for previous/current floor height)... 
+                    have all the Floor objects and given a position, should find max height from all Floor objects within vicinity.
+                    If max height is higher than current floor height, make Person jump
+
+                    should also keep constant gravity... that way we won't have to keep manually tranforming Y to floor
+
+                    if current Y not equal to current floor, animate falling frame
+                */}
+
+            <Floor key="floor3" dc="true" move={pos} x="0" maxheight={this.state.floor} ratio="1" width="17500"/>
+
+            {/* person!!! */}
+            <Person key="3" imgclass="person-slides-jimmy-dc" pos={pos} floor={this.state.floor} deltamode={this.state.deltaMode} deltay={scrollChange} maxscroll={vegasMaxScroll} />
+
+            <Parallax move={pos} x="600" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-3-Slides.png" imgclass="crowd-4"/>
+            <Parallax move={pos} x="1350" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-11-Slides.png" imgclass="crowd-4"/>
+            <Parallax move={pos} x="3150" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-6-Slides.png" imgclass="crowd-3"/>
+            <Parallax move={pos} x="2370" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-2-Slides.png" imgclass="crowd-4"/>
+            <Parallax move={pos} x="4720" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-1-Slides.png" imgclass="crowd-2"/>
+            <Parallax move={pos} x="3090" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-1-Slides.png" imgclass="crowd-3"/>
+            <Parallax move={pos} x="3120" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-5-Slides.png" imgclass="crowd-2"/>
+            <Parallax move={pos} x="4090" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-7-Slides.png" imgclass="crowd"/>
+            <Parallax move={pos} x="5080" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-3-Slides.png" imgclass="crowd"/>
+            <Parallax move={pos} x="5470" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-10-Slides.png" imgclass="crowd-4"/>
+            <Parallax move={pos} x="7110" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-4-Slides.png" imgclass="crowd"/>
+            <Parallax move={pos} x="6110" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-7-Slides.png" imgclass="crowd-2"/>
+            <Parallax move={pos} x="6360" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-11-Slides.png" imgclass="crowd-4"/>
+            <Parallax move={pos} x="8750" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-1-Slides.png" imgclass="crowd-2"/>
+
+            {/* things that render in front of person!!! */}
+            <Parallax move={pos} x="8100" floor={this.state.floor} ratio="1" opacity="1" color="transparent" asset="Vegas-Warning-Sign.png"/>
+            <Parallax key="tele3" move={pos} x="8300" staticclass="vegas-teleporter" animationclass="vegas-teleporter-slides" animateat={vegasMaxScroll} floor={this.state.floor} ratio="1" opacity="1" color="transparent" freeze="true" asset="Spacer.png"/>
+            <Notification text="Welcome to our online demo! Scroll your mouse or use the arrow keys to explore. - Draft Studios Team"/>
+        </Canvas>
+        ) ||
          
         (mode === "vegas" && 
-        <Canvas mode={mode} className={shaking} tabIndex="1" key="1" scroll={(e) => freeze ? this.handleWheel(e, vegasMaxScroll, true) : this.handleWheel(e, vegasMaxScroll) }> {/* this is how i'll handle max scroll */}
+        <Canvas mode={mode} className={shaking} tabIndex="1" key="canvas1" scroll={(e) => freeze ? this.handleWheel(e, vegasMaxScroll, true) : this.handleWheel(e, vegasMaxScroll) }> {/* this is how i'll handle max scroll */}
             {/* vegas!!! */}
 
             {/* background!!! */}
             <Parallax move={pos} x="0" floor={this.state.floor} ratio="0.7" opacity="0.5" asset="Vegas-Sand-Dunes.png" color="transparent"/>
             <Parallax move={pos} x="0" floor={this.state.floor} ratio="0.8" opacity="0.5" asset="Vegas-Background-Buildings.png" color="transparent"/>
             <Parallax move={pos} x="0" floor={this.state.floor} ratio="1.3" opacity="1" asset="Vegas-Back-Trees.png" color="transparent"/>
+            {/*
             <Fireworks move={pos} x="0" y="0" width="1500" ratio="1"/>
+            */}
 
             {/* buildings!!! */}
             <Parallax move={pos} x="200" animationclass="vegas-sign-glow-slides" floor={this.state.floor} ratio="1" opacity="1" color="transparent" asset="Spacer.png"/>
@@ -222,8 +332,7 @@ class App extends Component {
                 */}
 
             <div class="ground" move={pos} shouldIJump={this.shouldPersonJump}>
-                <Floor move={pos} x="0" maxheight={this.state.floor} ratio="1" width="500"/>
-                <Floor move={pos} x="500" maxheight="30vh" ratio="1" width="2000"/>
+                <Floor move={pos} x="0" maxheight={this.state.floor} ratio="1" width="17500"/>
                 <Floor move={pos} x="2000" maxheight="5vh" ratio="1" width="17500"/>
             </div>
 
@@ -231,9 +340,9 @@ class App extends Component {
             <Person key="1" pos={pos} floor={this.state.floor} deltamode={this.state.deltaMode} deltay={scrollChange} maxscroll={vegasMaxScroll} />
 
             {/* things that render in front of person!!! */}
-            <Parallax move={pos} x="8300" staticclass="vegas-teleporter" animationclass="vegas-teleporter-slides" animateat={vegasMaxScroll} floor={this.state.floor} ratio="1" opacity="1" color="transparent" freeze="true" asset="Spacer.png"/>
+            <Parallax key="tele1" move={pos} x="8300" staticclass="vegas-teleporter" animationclass="vegas-teleporter-slides" animateat={vegasMaxScroll} floor={this.state.floor} ratio="1" opacity="1" color="transparent" freeze="true" asset="Spacer.png"/>
             <Parallax x="0" floor={this.state.street} color="transparent" ratio="1.5" asset="Taxi-Prius.png" imgclass="prius"/>
-            <Notification text="Welcome to our online demo! Scroll your mouse or use the arrow keys to explore. - Draft Studios Team"/>
+            <Notification text="This was the first stage we ever presented at Adobe Summit! Fun times."/>
         </Canvas>
         ) ||
         (mode === "boston" && 
@@ -303,7 +412,7 @@ class App extends Component {
             <Parallax move={pos} vw={this.state.vw} x={2640} popup="1" floor={this.state.floor} color="transparent" ratio="1" asset="Washington-Statue.png"/>
             <Parallax move={pos} vw={this.state.vw} x={8900} popup="1" floor={this.state.floor} color="transparent" ratio="1" asset="Gate.png"/>
             <Parallax x="0" floor={this.state.street} color="transparent" ratio="1.5" asset="Taxi-Camry.png" imgclass="camry"/>
-            <Parallax move={pos} x="9800" staticclass="vegas-teleporter" animationclass="vegas-teleporter-slides" animateat={bostonMaxScroll} floor={this.state.floor} ratio="1" opacity="1" color="transparent" freeze="true" asset="Spacer.png"/>
+            <Parallax key="tele2" move={pos} x="9800" staticclass="vegas-teleporter" animationclass="vegas-teleporter-slides" animateat={bostonMaxScroll} floor={this.state.floor} ratio="1" opacity="1" color="transparent" freeze="true" asset="Spacer.png"/>
             <Notification text="Hey, you made it to the secret stage! You'll never guess where we're from. ¯\_(ツ)_/¯"/>
         </Canvas>
         )

@@ -16,9 +16,10 @@ class Floor extends Component {
     const height = this.props.maxheight;
     const width = this.props.width;
     const nowrap = this.props.nowrap;
+    const style = (this.props.dc === "true") ? "floor-dc" : "floor";
 
     return (
-        <div className="floor" style={{
+        <div className={style} style={{
                 bottom: 0, 
                 width: width+'px', 
                 height: height, 

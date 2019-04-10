@@ -38,7 +38,7 @@ class Canvas extends Component {
   }
 
   render() {
-    const shouldChangeBackground = this.props.mode==="vegas" ? "canvas day-to-night" + this.props.className : "canvas night-to-day" + this.props.className;
+    const shouldChangeBackground = this.props.mode==="dc" ? "canvas dc" + this.props.className : this.props.mode==="vegas" ? "canvas day-to-night" + this.props.className : "canvas night-to-day" + this.props.className;
     return (
         <div className={shouldChangeBackground} onWheel={this.props.scroll} 
             onTouchStart={touchStartEvent => this.handleTouchStart(touchStartEvent)}

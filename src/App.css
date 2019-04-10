@@ -54,12 +54,37 @@ html, body, #app, #app>div {
   animation: day-to-night 5s ease 0s forwards;
 }
 
+.dc {
+  animation: dc 5s ease 0s forwards;
+}
+
 .dusk-to-dawn{
   animation: dusk-to-dawn 5s ease 0s forwards;
 }
 
 .dawn-to-dusk{
   animation: dawn-to-dusk 5s ease 0s forwards;
+}
+
+@keyframes dc {
+    from { background-color: #abe7f4; 
+  /*
+  background: #012142; 
+  background: -moz-linear-gradient(top, #012142 0%, #8f0222 48%, #8f0222 48%, #8f0222 57%, #8f0222 67%, #8f0222 67%, #6d0019 84%); 
+  background: -webkit-linear-gradient(top, #012142 0%,#8f0222 48%,#8f0222 48%,#8f0222 57%,#8f0222 67%,#8f0222 67%,#6d0019 84%); 
+  background: linear-gradient(to bottom, #012142 0%,#8f0222 48%,#8f0222 48%,#8f0222 57%,#8f0222 67%,#8f0222 67%,#6d0019 84%); 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#012142', endColorstr='#6d0019',GradientType=0 ); 
+  */
+    }
+    to { background-color: #abe7f4; 
+  /*
+  background-color: #00bff3;
+  background: -moz-linear-gradient(top, #1e5799 0%, #2989d8 50%, #207cca 72%, #7db9e8 100%);
+  background: -webkit-linear-gradient(top, #1e5799 0%,#2989d8 50%,#207cca 72%,#7db9e8 100%);
+  background: linear-gradient(to bottom, #1e5799 0%,#2989d8 50%,#207cca 72%,#7db9e8 100%); 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 );
+  */
+    }
 }
 
 @keyframes night-to-day {
@@ -126,6 +151,13 @@ html, body, #app, #app>div {
   background-repeat: repeat-x;
 }
 
+.floor-dc {
+  background-color: gray;
+  position: absolute;
+  overflow: "hidden";
+  background-repeat: repeat-x;
+}
+
 .floor .wrap {
   height: calc(20vh - 50px);
   background-color: brown;
@@ -133,6 +165,14 @@ html, body, #app, #app>div {
   overflow: "hidden";
   background: url('/assets/Ground.png'); 
 }
+
+.floor-dc .wrap {
+  height: calc(20vh - 20px);
+  background-color: darkgray;
+  position: absolute;
+  overflow: "hidden";
+}
+
 
 .person {
   height: 200px;
@@ -178,6 +218,10 @@ html, body, #app, #app>div {
 
 .person-slides-jimmy {
   background: url('/assets/Vegas-Jimmy-Slides.png'); 
+}
+
+.person-slides-jimmy-dc {
+  background: url('/assets/DC-Jimmy-Slides.png'); 
 }
 
 @keyframes pan {
@@ -402,6 +446,118 @@ html, body, #app, #app>div {
 .bird {
   animation: bird 3s ease 0s infinite;
   animation-direction: alternate;
+}
+
+@keyframes crowd {
+  0%{
+    transform: rotateY(0deg) translateX(+200px);
+    transform-origin:left;
+  }
+  49%{
+    transform: rotateY(0deg);
+  }
+  50%{
+    transform: rotateY(180deg);
+  }
+  51%{
+    transform: rotateY(180deg);
+  }
+  99%{
+    transform: rotateY(180deg);
+  }
+  100%{
+    transform: rotateY(180deg);
+  }
+}
+
+.crowd {
+  animation: crowd 2s ease 0s infinite forwards;
+  animation-direction: alternate;
+  animation-delay: 0s;
+}
+
+@keyframes crowd-2 {
+  0%{
+    transform: rotateY(180deg) translateX(-200px);
+    transform-origin:right;
+  }
+  49%{
+    transform: rotateY(180deg);
+  }
+  50%{
+    transform: rotateY(0deg);
+  }
+  51%{
+    transform: rotateY(0deg);
+  }
+  99%{
+    transform: rotateY(0deg);
+  }
+  100%{
+    transform: rotateY(0deg);
+  }
+}
+
+.crowd-2 {
+  animation: crowd-2 6s ease 1s infinite forwards;
+  animation-direction: alternate;
+  animation-delay: 1s;
+}
+
+@keyframes crowd-3 {
+  0%{
+    transform: rotateY(180deg) translateX(-200px);
+    transform-origin:right;
+  }
+  49%{
+    transform: rotateY(180deg);
+  }
+  50%{
+    transform: rotateY(0deg);
+  }
+  51%{
+    transform: rotateY(0deg);
+  }
+  99%{
+    transform: rotateY(0deg);
+  }
+  100%{
+    transform: rotateY(0deg);
+  }
+}
+
+.crowd-3 {
+  animation: crowd-3 3s ease 0s infinite forwards;
+  animation-direction: alternate;
+  animation-delay: 4s;
+}
+
+@keyframes crowd-4 {
+  0%{
+    transform: rotateY(180deg) translateX(-1200px);
+    transform-origin:left;
+  }
+  49%{
+    transform: rotateY(180deg);
+  }
+  50%{
+    transform: rotateY(0deg);
+  }
+  51%{
+    transform: rotateY(0deg);
+  }
+  99%{
+    transform: rotateY(0deg);
+  }
+  100%{
+    transform: rotateY(0deg);
+  }
+}
+
+.crowd-4 {
+  animation: crowd-4 10s ease 0s infinite forwards;
+  animation-direction: alternate;
+  animation-delay: 1s;
 }
 
 /* css styles and animation config for fireworks. crediting Eddie Lin: https://codepen.io/yshlin/pen/ylDEk  */
