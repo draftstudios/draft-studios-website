@@ -119,8 +119,8 @@ class App extends Component {
       }
 
       // checking this since swipe won't be a real wheel event. also want to prevent regular scroll behaviors
-      if (e.preventDefault) e.preventDefault();
-      if (e.stopPropagation) e.stopPropagation();
+      //if (e.preventDefault) e.preventDefault();
+      //if (e.stopPropagation) e.stopPropagation();
   }
 
   handleKeys = (e) => {
@@ -213,6 +213,7 @@ class App extends Component {
             <Parallax move={pos} x="7000" floor={this.state.floor} color="transparent" ratio="0.75" asset="Bird-1.png" imgclass="bird"/>
             <Parallax move={pos} x="8000" floor={this.state.floor} color="transparent" ratio="1.5" asset="Bird-2.png" imgclass="bird"/>
 
+            <Parallax move={pos} x="800" floor={this.state.floor} color="transparent" ratio="0.1" asset="buffalo.png" imgclass="bird"/>
             <Parallax move={pos} x="100" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-1-Slides.png" imgclass="crowd"/>
             <Parallax move={pos} x="400" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-12-Slides.png" imgclass="crowd-2"/>
             <Parallax move={pos} x="1100" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-2-Slides.png" imgclass="crowd-3"/>
@@ -272,7 +273,7 @@ class App extends Component {
             {/* things that render in front of person!!! */}
             <Parallax move={pos} x="8100" floor={this.state.floor} ratio="1" opacity="1" color="transparent" asset="Vegas-Warning-Sign.png"/>
             <Parallax key="tele3" move={pos} x="8300" staticclass="vegas-teleporter" animationclass="vegas-teleporter-slides" animateat={vegasMaxScroll} floor={this.state.floor} ratio="1" opacity="1" color="transparent" freeze="true" asset="Spacer.png"/>
-            <Notification text="Welcome to our online demo! Scroll your mouse or use the arrow keys to explore. - Draft Studios Team"/>
+            <Notification text="Welcome to our online demo! Scroll your mouse or use the arrow keys to explore."/>
         </Canvas>
         ) ||
          
