@@ -48,6 +48,11 @@ class Parallax extends Component {
                     backgroundColor: color,
                     opacity: opacity,
                 }}>
+
+            <span style={{ float: "left", width: '100px' }}>{ Math.abs(this.currentPosition + 200 - ( this.props.move + (this.props.vw / 2))) < 200 
+                ? 'BOOM' : 
+                    !isNaN((this.props.move + (this.props.vw / 2))) && (this.currentPosition + ' - ' + (this.props.move + (this.props.vw / 2)))}</span>
+
             {/*
                 // max-height for image object since it scales!!!
                 // asset check is failing for animated classes since it's technically a background with no image... make transparent image asset

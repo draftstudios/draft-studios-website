@@ -18,6 +18,7 @@ class Floor extends Component {
     const nowrap = this.props.nowrap;
     const style = (this.props.dc === "true") ? "floor-dc" : "floor";
 
+    // if current this.props.move + center logic is within startingposition and width, callback upd(maxheight) to update state.floor
     return (
         <div className={style} style={{
                 bottom: 0, 
@@ -30,6 +31,7 @@ class Floor extends Component {
             >
             { !nowrap ? 
             <div className="wrap" style={{bottom: 0, width: width+'px'}} >
+              {this.props.move}
             </div>
                 :
                 null }

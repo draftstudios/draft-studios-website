@@ -152,6 +152,12 @@ class App extends Component {
         );
   }
 
+  updateFloorState = (flr) => {
+        this.setState({
+          floor: flr
+        });
+  }
+
   render() {
     const scrollChange = this.state.deltaY;
     const vegasMaxScroll = 8300 - this.state.vw / 2 + 150; //basically total asset width minus half the viewport and adjust by person width
@@ -213,7 +219,6 @@ class App extends Component {
             <Parallax move={pos} x="7000" floor={this.state.floor} color="transparent" ratio="0.75" asset="Bird-1.png" imgclass="bird"/>
             <Parallax move={pos} x="8000" floor={this.state.floor} color="transparent" ratio="1.5" asset="Bird-2.png" imgclass="bird"/>
 
-            <Parallax move={pos} x="800" floor={this.state.floor} color="transparent" ratio="0.1" asset="buffalo.png" imgclass="bird"/>
             <Parallax move={pos} x="100" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-1-Slides.png" imgclass="crowd"/>
             <Parallax move={pos} x="400" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-12-Slides.png" imgclass="crowd-2"/>
             <Parallax move={pos} x="1100" floor={this.state.floor} color="transparent" ratio="1" asset="DC-Crowd-2-Slides.png" imgclass="crowd-3"/>
@@ -250,7 +255,7 @@ class App extends Component {
                     if current Y not equal to current floor, animate falling frame
                 */}
 
-            <Floor key="floor3" dc="true" move={pos} x="0" maxheight={this.state.floor} ratio="1" width="17500"/>
+            <Floor key="floor3" dc="true" move={pos} x="0" maxheight={this.state.floor} ratio="1" width="17500" upd={this.updateFloorState}/>
 
             {/* person!!! */}
             <Person key="3" imgclass="person-slides-jimmy-dc" pos={pos} floor={this.state.floor} deltamode={this.state.deltaMode} deltay={scrollChange} maxscroll={vegasMaxScroll} />
