@@ -31,7 +31,8 @@ class Parallax extends Component {
               ' ' + this.props.staticclass;
         const imgclass = ' ' + this.props.imgclass;
         const opacity = this.props.opacity;
-        const clss = (popup, move, x) => (
+
+        const clss = (popup, move, x) => ( // this controls whether a building in boston pops out and in...
             popup==="1" && 
             move + (this.props.vw / 2) // current position relative to travel line
             > x - (this.props.vw / 2.25) 
@@ -48,11 +49,14 @@ class Parallax extends Component {
                     backgroundColor: color,
                     opacity: opacity,
                 }}>
-
-            <span style={{ float: "left", width: '100px' }}>{ Math.abs(this.currentPosition + 200 - ( this.props.move + (this.props.vw / 2))) < 200 
-                ? 'BOOM' : 
-                    !isNaN((this.props.move + (this.props.vw / 2))) && (this.currentPosition + ' - ' + (this.props.move + (this.props.vw / 2)))}</span>
-
+                
+                {/* here's our collision test code */}
+                {  Math.abs(this.currentPosition + 200 - ( this.props.move + (this.props.vw / 2))) < 200 ?
+                        <span style={{ width: '100px' }}>BOOM</span> : 
+                        <span>{ !isNaN((this.props.move + (this.props.vw / 2))) && (this.currentPosition + ' - ' + (this.props.move + (this.props.vw / 2)))}
+                        </span>
+                }
+                
             {/*
                 // max-height for image object since it scales!!!
                 // asset check is failing for animated classes since it's technically a background with no image... make transparent image asset
