@@ -23,7 +23,7 @@ class FetchColdFusionAssets extends Component {
 
           console.log(const_data[0].imgclass);
           if (const_data[0].imgclass === "worldboss") {
-            //this.props.startshaking();
+            this.props.startshaking();
           }
 
           // just in case we get a rogue async state change... trap it 
